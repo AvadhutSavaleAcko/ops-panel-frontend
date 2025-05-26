@@ -1,0 +1,368 @@
+{
+  "url": {
+    "base_path": "",
+    "host_name": "",
+    "query_params": {
+      "ekey": "Iwx9_W2T4mGAemAc1Psdig"
+    }
+  },
+  "actions": [
+    {
+      "args": {
+        "data": {
+          "make": "Maruti",
+          "year": "2010",
+          "model": "Swift Dzire",
+          "reg_no": "MH 04 EQ 4392"
+        },
+        "eventName": "view_vehicle_prequote_page",
+        "eventType": "pageView"
+      },
+      "type": "useAnalytics"
+    }
+  ],
+  "children": [
+    {
+      "id": "enter_mmv_details_header",
+      "data": {
+        "props": {
+          "is_visible": true,
+          "back_button": true
+        },
+        "column": 1
+      },
+      "type": "header"
+    },
+    {
+      "id": "enter_mmv_details_two_column_layout",
+      "data": {
+        "props": {
+          "is_visible": true
+        },
+        "column": 2
+      },
+      "type": "flex_container",
+      "children": [
+        {
+          "id": "enter_mmv_details_left_nav",
+          "data": {
+            "props": {
+              "steps": [
+                {
+                  "name": "Car details",
+                  "status": "progress"
+                },
+                {
+                  "name": "Personal details",
+                  "status": "pending"
+                },
+                {
+                  "name": "Plan selection",
+                  "status": "pending"
+                },
+                {
+                  "name": "Review",
+                  "status": "pending"
+                }
+              ],
+              "style": {
+                "background": "#EFE9FB"
+              },
+              "is_visible": true
+            },
+            "column": 1
+          },
+          "type": "left_navigation"
+        },
+        {
+          "id": "enter_mmv_details_data",
+          "data": {
+            "props": {
+              "style": {},
+              "is_visible": true
+            },
+            "column": 2
+          },
+          "type": "box_container",
+          "children": [
+            {
+              "id": "mmv_page_heading",
+              "data": {
+                "row": 1,
+                "props": {
+                  "text": "Tell us your car details",
+                  "style": {},
+                  "is_visible": true
+                }
+              },
+              "type": "page_heading"
+            },
+            {
+              "id": "enter_mmv_details_main_container",
+              "data": {
+                "row": 3,
+                "props": {
+                  "heading": "",
+                  "is_visible": true,
+                  "payloadData": {
+                    "name": "mmv_container",
+                    "value": ""
+                  },
+                  "sub_heading": null
+                }
+              },
+              "type": "mmv_container",
+              "children": [
+                {
+                  "id": "select_make",
+                  "data": {
+                    "props": {
+                      "placeholder": "Select brand & model",
+                      "label": "Select make & model",
+                      "is_visible": true,
+                      "mmvId": "make"
+                    }
+                  },
+                  "type": "mmv_input_field"
+                },
+                {
+                  "id": "fuel_type_container",
+                  "data": {
+                    "props": {
+                      "placeholder": "Select fuel type",
+                      "label": "Select fuel type",
+                      "is_visible": true,
+                      "mmvId": "fuel_type"
+                    }
+                  },
+                  "type": "mmv_input_field"
+                },
+                {
+                  "id": "variant_container",
+                  "data": {
+                    "props": {
+                      "placeholder": "Select Variant",
+                      "label": "Select Variant",
+                      "is_visible": true,
+                      "mmvId": "variant"
+                    }
+                  },
+                  "type": "mmv_input_field"
+                },
+                {
+                  "id": "reg_year_container",
+                  "data": {
+                    "props": {
+                      "placeholder": "Select registration year",
+                      "label": "Select registration year",
+                      "is_visible": true,
+                      "mmvId": "registration_year"
+                    }
+                  },
+                  "type": "mmv_input_field"
+                },
+                {
+                  "id": "enter_mmv_details_qna_2",
+                  "data": {
+                    "row": 3,
+                    "props": {
+                      "heading": "Does your car have an external CNG kit?",
+                      "is_visible": true,
+                      "payloadData": {
+                        "name": "is_external_cng",
+                        "value": ""
+                      }
+                    }
+                  },
+                  "type": "qna",
+                  "children": [
+                    {
+                      "id": "qna3_select_button_1",
+                      "data": {
+                        "props": {
+                          "label": "Yes",
+                          "value": true,
+                          "is_visible": true,
+                          "styles": {
+                            "color": "#040222",
+                            "textAlign": "center",
+                            "fontSize": "14px",
+                            "fontWeight": "400",
+                            "lineHeight": "20px"
+                          }
+                        }
+                      },
+                      "type": "select_button",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "12px"
+                      },
+                      "actions": {
+                        "on_click": [{}]
+                      }
+                    },
+                    {
+                      "id": "qna3_select_button_2",
+                      "data": {
+                        "props": {
+                          "label": "No",
+                          "value": false,
+                          "is_visible": true,
+                          "styles": {
+                            "color": "#040222",
+                            "textAlign": "center",
+                            "fontSize": "14px",
+                            "fontWeight": "400",
+                            "lineHeight": "20px"
+                          }
+                        }
+                      },
+                      "type": "select_button",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "actions": {
+                        "on_click": [{}]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "enter_mmv_details_qna_1",
+                  "data": {
+                    "row": 3,
+                    "props": {
+                      "heading": "Is this is a commercial vehicle?",
+                      "is_visible": true,
+                      "payloadData": {
+                        "name": "is_commercial",
+                        "value": ""
+                      },
+                      "sub_heading": "Vehicle used as a taxi, to deliver goods etc.",
+                      "cueTextStyles": {"margin-top": "-12px"}
+                    }
+                  },
+                  "type": "qna",
+                  "styles": {
+                    "display": "flex", "flex-direction": "row"
+                  },
+                  "children": [
+                    {
+                      "id": "qna2_select_button_1",
+                      "data": {
+                        "props": {
+                          "label": "Yes",
+                          "value": true,
+                          "is_visible": true,
+                          "styles": {
+                            "color": "#040222",
+                            "textAlign": "center",
+                            "fontSize": "14px",
+                            "fontWeight": "400",
+                            "lineHeight": "20px"
+                          }
+                        }
+                      },
+                      "type": "select_button",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "50px"
+                      },
+                      "actions": {
+                        "on_click": [
+                          {
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "qna2_select_button_2",
+                      "data": {
+                        "props": {
+                          "label": "No",
+                          "value": false,
+                          "is_visible": true,
+                          "styles": {
+                            "color": "#040222",
+                            "textAlign": "center",
+                            "fontSize": "14px",
+                            "fontWeight": "400",
+                            "lineHeight": "20px"
+                          }
+                        }
+                      },
+                      "type": "select_button",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "actions": {
+                        "on_click": [
+                          {
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "page_footer",
+      "data": {
+        "props": {
+          "text": "By proceeding, you agree to our",
+          "style": {
+            "padding": "20px",
+            "maxWidth": "360px"
+          },
+          "is_visible": true,
+          "underlined_text": "Terms & Conditions"
+        },
+        "column": 3
+      },
+      "type": "footer",
+      "children": [
+        {
+          "id": "footer_cta",
+          "type": "primary_button",
+          "data": {
+            "props": {
+              "label": "Continue",
+              "styles": {
+                "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                "border_radius": "8px"
+              },
+              "is_visible": true
+            }
+          },
+          "actions": {
+            "on_click": [
+              {
+                "args": {
+                  "required_fields": [
+                    "variant_id",
+                    "is_external_cng",
+                    "is_commercial"
+                  ]
+                },
+                "type": "validateAndFetchConfigAndRedirect"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "meta_data": {
+    "link": "",
+    "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+    "description": ""
+  },
+  "current_node": "enter_mmv_details_node"
+}

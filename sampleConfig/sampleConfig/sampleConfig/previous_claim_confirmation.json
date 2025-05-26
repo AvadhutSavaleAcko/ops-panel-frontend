@@ -1,0 +1,302 @@
+{
+    "url": {
+      "base_path": "",
+      "host_name": "",
+      "query_params": {
+        "ekey": "#proposal.ekey"
+      }
+    },
+    "actions": {
+      "on_load": [
+        {
+          "args": {
+            "data": {
+              "make": "Maruti",
+              "year": "2010",
+              "model": "Swift Dzire",
+              "reg_no": "MH 04 EQ 4392"
+            },
+            "eventName": "view_vehicle_prequote_page",
+            "eventType": "pageView"
+          },
+          "type": "useAnalytics"
+        }
+      ]
+    },
+    "children": [
+      {
+        "id": "previous_claim_confirmation_header",
+        "data": {
+          "props": {
+            "label": "",
+            "imgSrc": "",
+            "is_visible": true,
+            "back_button": true
+          },
+          "column": null
+        },
+        "type": "header"
+      },
+      {
+        "id": "previous_claim_confirmation_two_column_layout",
+        "data": {
+          "props": {
+            "is_visible": true
+          }
+        },
+        "type": "flex_container",
+        "children": [
+          {
+            "id": "previous_claim_confirmation_left_nav",
+            "data": {
+              "props": {
+                "steps": [
+                  {
+                    "name": "Car details",
+                    "status": "progress"
+                  },
+                  {
+                    "name": "Personal details",
+                    "status": "pending"
+                  },
+                  {
+                    "name": "Select plan",
+                    "status": "pending"
+                  },
+                  {
+                    "name": "Discounts",
+                    "status": "pending"
+                  },
+                  {
+                    "name": "Insured value",
+                    "status": "pending"
+                  },
+                  {
+                    "name": "Additional covers",
+                    "status": "pending"
+                  },
+                  {
+                    "name": "Verify and review",
+                    "status": "pending"
+                  }
+                ],
+                "style": {
+                  "background": "#EFE9FB"
+                },
+                "is_visible": true
+              },
+              "coloum": 1
+            },
+            "type": "left_navigation"
+          },
+          {
+            "id": "previous_claim_confirmation_data",
+            "data": {
+              "props": {
+                "style": {},
+                "is_visible": true
+              },
+              "coloum": 2
+            },
+            "type": "layout",
+            "children": [
+              {
+                "id": "previous_claim_confirmation_page_heading",
+                "data": {
+                  "row": 1,
+                  "props": {
+                    "text": "We need a <span>few more details</span>",
+                    "style": {},
+                    "is_visible": true
+                  }
+                },
+                "type": "page_heading"
+              },
+              {
+                "id": "previous_claim_confirmation_mmv_widget",
+                "data": {
+                  "row": 2,
+                  "props": {
+                    "ncb": "#proposal.vehicle.previous_policy.previous_ncb",
+                    "make": "#proposal.vehicle.make_name",
+                    "pped": "#proposal.vehicle.previous_policy.expiry_date",
+                    "year": "#proposal.vehicle.registration_year",
+                    "model": "#proposal.vehicle.model_name",
+                    "reg_no": "#proposal.vehicle.registration_number",
+                    "variant": "#proposal.vehicle.variant_name",
+                    "gst_text": "If you have a company-owned car, add your GST number after payment and get a GST invoice.",
+                    "acko_logo": "/public/images/acko_logo.svg",
+                    "is_visible": true,
+                    "ppepd_text": "Policy expires on ${pped}",
+                    "vehicle_logo": "public/images/car_image.png"
+                  }
+                },
+                "type": "mmv_widget",
+                "children": [
+                  {
+                    "id": "pre_quote_edit_widget",
+                    "data": {
+                      "props": {
+                        "icon": "@public/images/edit_icon.svg",
+                        "label": "Edit",
+                        "is_visible": true,
+                        "proposal_ekey": "#proposal.ekey"
+                      }
+                    },
+                    "type": "edit_widget",
+                    "actions": {
+                      "on_click": [
+                        {
+                          "args": {
+                            "requestBody": {
+                              "journey": "fresh_car",
+                              "expected_node": "edit_mmv_details_node"
+                            }
+                          },
+                          "type": "fetch_config_redirect"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "vehicle_preqoute_qna_1",
+                "data": {
+                  "row": 3,
+                  "props": {
+                    "heading": "Have you made a claim in your current policy?",
+                    "validate": {
+                      "regex": "",
+                      "requiredErrorMessage": "This is a mandatory field"
+                    },
+                    "is_visible": true,
+                    "start_date": "#proposal.vehicle.previous_policy.expiry_date",
+                    "payloadData": {
+                      "name": "previous_policy_claim_answer",
+                      "value": ""
+                    },
+                    "sub_heading": "${prev_insurer} policy starting ${start_date}",
+                    "prev_insurer": "#proposal.vehicle.previous_policy.insurer_name"
+                  }
+                },
+                "type": "qna",
+                "actions": {
+                  "on_load": [
+                    {
+                      "args": {
+                        "data": {
+                          "make": "Maruti",
+                          "reg_no": "MH 04 EQ 4392"
+                        },
+                        "eventName": "view_vehicle_expired_question",
+                        "eventType": "pageView"
+                      },
+                      "type": "useAnalytics"
+                    }
+                  ]
+                },
+                "children": [
+                  {
+                    "id": "qna_button_1",
+                    "data": {
+                      "props": {
+                        "name": "previous_policy_claim_answer",
+                        "label": "Yes",
+                        "value": "claimed",
+                        "styles": {
+                          "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                          "border_radius": "8px"
+                        },
+                        "is_visible": true
+                      }
+                    },
+                    "type": "select_button",
+                    "actions": {
+                      "on_click": [
+                        {}
+                      ]
+                    }
+                  },
+                  {
+                    "id": "qna_button_2",
+                    "data": {
+                      "props": {
+                        "name": "previous_policy_claim_answer",
+                        "label": "No",
+                        "value": "not_claimed",
+                        "styles": {
+                          "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                          "border_radius": "8px"
+                        },
+                        "is_visible": true
+                      }
+                    },
+                    "type": "select_button",
+                    "actions": {
+                      "on_click": [
+                        {}
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "page_footer",
+        "data": {
+          "props": {
+            "label": "",
+            "style": {
+              "padding": "20px",
+              "maxWidth": "360px"
+            },
+            "cueText": "",
+            "is_visible": true
+          },
+          "column": null
+        },
+        "type": "footer",
+        "children": [
+          {
+            "id": "footer_cta",
+            "data": {
+              "props": {
+                "name": "",
+                "label": "View plans",
+                "styles": {
+                  "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                  "border_radius": "8px"
+                },
+                "is_visible": true
+              }
+            },
+            "type": "primary_button",
+            "actions": {
+              "on_click": [
+                {
+                  "args": {
+                    "journey": "fresh_car",
+                    "expected_node": "",
+                    "required_fields": [
+                      "vehicle_preqoute_qna_1"
+                    ]
+                  },
+                  "type": "validateAndFetchConfigAndRedirect"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "meta_data": {
+      "link": "",
+      "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+      "description": ""
+    },
+    "current_node": "previous_claim_confirmation_node"
+  }

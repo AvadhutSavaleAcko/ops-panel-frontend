@@ -1,0 +1,862 @@
+{
+  "url": {
+    "base_path": "",
+    "host_name": "",
+    "query_params": {
+      "ekey": "#proposal.ekey"
+    }
+  },
+  "actions": [
+    {
+      "args": {
+        "data": {
+          "make": "Maruti",
+          "year": "2010",
+          "model": "Swift Dzire",
+          "reg_no": "MH 04 EQ 4392"
+        },
+        "eventName": "view_vehicle_prequote_page",
+        "eventType": "pageView"
+      },
+      "type": "useAnalytics"
+    }
+  ],
+  "children": [
+    {
+      "id": "previous_policy_confirmation_header",
+      "data": {
+        "props": {
+          "label": "",
+          "is_visible": true,
+          "back_button": true
+        },
+        "column": 1
+      },
+      "type": "header"
+    },
+    {
+      "id": "previous_policy_confirmation_two_column_layout",
+      "data": {
+        "props": {
+          "is_visible": true
+        },
+        "column": 2
+      },
+      "type": "flex_container",
+      "children": [
+        {
+          "id": "previous_policy_confirmation_left_nav",
+          "data": {
+            "props": {
+              "steps": [
+                {
+                  "name": "Car details",
+                  "status": "progress"
+                },
+                {
+                  "name": "Personal details",
+                  "status": "pending"
+                },
+                {
+                  "name": "Select plan",
+                  "status": "pending"
+                },
+                {
+                  "name": "Discounts",
+                  "status": "pending"
+                },
+                {
+                  "name": "Insured value",
+                  "status": "pending"
+                },
+                {
+                  "name": "Additional covers",
+                  "status": "pending"
+                },
+                {
+                  "name": "Verify and review",
+                  "status": "pending"
+                }
+              ],
+              "style": {
+                "background": "#EFE9FB"
+              },
+              "is_visible": true
+            },
+            "column": 1
+          },
+          "type": "left_navigation"
+        },
+        {
+          "id": "previous_policy_confirmation_data",
+          "data": {
+            "props": {
+              "style": {},
+              "is_visible": true
+            },
+            "column": 2
+          },
+          "type": "box_container",
+          "children": [
+            {
+              "id": "user_info_node_details",
+              "data": {
+                "row": 4,
+                "props": {
+                  "name": "owner_name",
+                  "type": "text",
+                  "styles": {},
+                  "cueText": "Name should be as per Registration certificate (RC)",
+                  "is_visible": true,
+                  "owner_name": "",
+                  "placeholder": "Enter your name",
+                  "defaultValue": ""
+                }
+              },
+              "type": "inputfield",
+              "actions": {
+                "on_change": [
+                  {}
+                ]
+              }
+            },
+            {
+              "id": "previous_policy_confirmation_page_heading",
+              "data": {
+                "row": 3,
+                "props": {
+                  "text": "Give us <span>more details</span>",
+                  "style": {},
+                  "is_visible": true
+                }
+              },
+              "type": "page_heading"
+            },
+            {
+              "id": "previous_policy_confirmation_mmv_widget",
+              "data": {
+                "row": 2,
+                "props": {
+                  "ncb": "#proposal.vehicle.previous_policy.previous_ncb",
+                  "make": "#proposal.vehicle.make_name",
+                  "pped": "#pped.previous_policy_expiry_date",
+                  "year": "#proposal.vehicle.registration_year",
+                  "model": "#proposal.vehicle.model_name",
+                  "reg_no": "#proposal.vehicle.registration_number",
+                  "variant": "#proposal.vehicle.variant_name",
+                  "gst_text": "If you have a company-owned car, add your GST number after payment and get a GST invoice.",
+                  "acko_logo": "/public/images/acko_logo.svg",
+                  "is_visible": true,
+                  "vehicle_logo": "public/images/car_image.png"
+                }
+              },
+              "type": "mmv_widget",
+              "children": [
+                {
+                  "id": "pre_quote_edit_widget",
+                  "data": {
+                    "props": {
+                      "icon": "@public/images/edit_icon.svg",
+                      "label": "Edit",
+                      "is_visible": true,
+                      "proposal_ekey": "#proposal.ekey"
+                    }
+                  },
+                  "type": "edit_widget",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "journey": "fresh_car",
+                          "expected_node": "edit_mmv_details_node"
+                        },
+                        "type": "fetch_config_redirect"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "previous_policy_confirmation_qna_1",
+              "data": {
+                "row": 1,
+                "props": {
+                  "heading": "Has your policy expired?",
+                  "validate": {
+                    "regex": "",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": true,
+                  "show_error": false,
+                  "payloadData": {
+                    "name": "is_expired",
+                    "value": ""
+                  },
+                  "sub_heading": null
+                }
+              },
+              "type": "qna",
+              "children": [
+                {
+                  "id": "qna2_select_button_1",
+                  "data": {
+                    "props": {
+                      "name": "is_expired",
+                      "label": "Yes",
+                      "value": true,
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "ids": [
+                            "previous_policy_confirmation_qna_2",
+                            "previous_policy_confirmation_qna_3",
+                            "previous_policy_confirmation_qna_4",
+                            "previous_policy_confirmation_qna_5"
+                          ],
+                          "reverseIds": [
+                            "previous_policy_confirmation_qna_6"
+                          ]
+                        },
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "qna2_select_button_2",
+                  "data": {
+                    "props": {
+                      "name": "is_expired",
+                      "label": "No",
+                      "value": false,
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "ids": [
+                            "previous_policy_confirmation_qna_6",
+                            "previous_policy_confirmation_qna_4",
+                            "previous_policy_confirmation_qna_5"
+                          ],
+                          "reverseIds": [
+                            "previous_policy_confirmation_qna_2",
+                            "previous_policy_confirmation_qna_3"
+                          ]
+                        },
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "qna2_select_button_3",
+                  "data": {
+                    "row": 5,
+                    "props": {
+                      "name": "is_expired",
+                      "label": "Not sure",
+                      "value": "Not sure",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": [],
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "previous_policy_confirmation_qna_12",
+              "data": {
+                "row": 8,
+                "props": {
+                  "styles": {
+                    "width": "95%"
+                  },
+                  "dataset": {},
+                  "heading": "Has your policy expired?",
+                  "validate": {
+                    "regex": "",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": false,
+                  "payloadData": {
+                    "name": "",
+                    "value": ""
+                  },
+                  "sub_heading": null
+                }
+              },
+              "type": "qna",
+              "actions": {
+                "on_click": [
+                  {
+                    "args": {},
+                    "type": "submit_call"
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "id": "edit_mmv_details_edit_dropdown",
+                  "data": {
+                    "row": 2,
+                    "props": {
+                      "name": "previous_insurer_name",
+                      "label": "No",
+                      "value": null,
+                      "heading": "",
+                      "options": [
+                        {
+                          "value": "Yes",
+                          "displayValue": "Yes"
+                        },
+                        {
+                          "value": "No",
+                          "displayValue": "No"
+                        },
+                        {
+                          "value": "Not sure",
+                          "displayValue": "Not sure"
+                        }
+                      ],
+                      "is_visible": true
+                    }
+                  },
+                  "type": "dropdown",
+                  "actions": {
+                    "onChange": [
+                      {
+                        "args": {},
+                        "type": "on_change"
+                      }
+                    ]
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "previous_policy_confirmation_qna_2",
+              "data": {
+                "row": 4,
+                "props": {
+                  "heading": "What was your previous policy type?",
+                  "validate": {
+                    "regex": "",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": false,
+                  "payloadData": {
+                    "name": "plan_type",
+                    "value": ""
+                  },
+                  "sub_heading": null
+                }
+              },
+              "type": "qna",
+              "children": [
+                {
+                  "id": "qna3_select_button_1",
+                  "data": {
+                    "props": {
+                      "name": "plan_type",
+                      "label": "Comprehensive",
+                      "value": "Comprehensive",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {},
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "qna3_select_button_2",
+                  "data": {
+                    "props": {
+                      "name": "plan_type",
+                      "label": "Third Party",
+                      "value": "Third Party",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "qna3_select_button_3",
+                  "data": {
+                    "props": {
+                      "name": "plan_type",
+                      "label": "Not sure",
+                      "value": "Not sure",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "previous_policy_confirmation_qna_3",
+              "data": {
+                "row": 5,
+                "props": {
+                  "styles": {
+                    "width": "95%",
+                    "flex-direction": "column"
+                  },
+                  "heading": "Tell us approximately when it expired",
+                  "validate": {
+                    "regex": "",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": false,
+                  "payloadData": {
+                    "name": "policy_status",
+                    "value": ""
+                  },
+                  "sub_heading": null
+                }
+              },
+              "type": "qna",
+              "children": [
+                {
+                  "id": "qna4_select_button_1",
+                  "data": {
+                    "props": {
+                      "label": "Expired within last 10 days",
+                      "value": "0-10",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "type": "showSeeMore"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "qna4_select_button_2",
+                  "data": {
+                    "props": {
+                      "label": "Expired 10 _ 90 days ago",
+                      "value": "11-90",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "qna4_select_button_3",
+                  "data": {
+                    "props": {
+                      "label": "Expired more than 90 days ago",
+                      "value": "90-",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "qna4_select_button_4",
+                  "data": {
+                    "props": {
+                      "label": "I don’t know",
+                      "value": "I don’t know",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "previous_policy_confirmation_qna_4",
+              "data": {
+                "row": 6,
+                "props": {
+                  "heading": "Have you made a claim on your previous policy?",
+                  "validate": {
+                    "regex": "",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": false,
+                  "payloadData": {
+                    "name": "previous_policy_claim_answer",
+                    "value": ""
+                  },
+                  "sub_heading": null
+                }
+              },
+              "type": "qna",
+              "children": [
+                {
+                  "id": "qna5_select_button_1",
+                  "data": {
+                    "props": {
+                      "name": "previous_policy_claim_answer",
+                      "label": "Yes",
+                      "value": "claimed",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "qna5_select_button_2",
+                  "data": {
+                    "props": {
+                      "name": "previous_policy_claim_answer",
+                      "label": "No",
+                      "value": "not_claimed",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "previous_policy_confirmation_qna_6",
+              "data": {
+                "row": 7,
+                "props": {
+                  "heading": "Which policy do you have??",
+                  "validate": {
+                    "regex": "",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": false,
+                  "payloadData": {
+                    "name": "plan_type",
+                    "value": ""
+                  },
+                  "sub_heading": null
+                }
+              },
+              "type": "qna",
+              "children": [
+                {
+                  "id": "qna3_select_button_1",
+                  "data": {
+                    "props": {
+                      "name": "plan_type",
+                      "label": "Comprehensive",
+                      "value": "Comprehensive",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "qna3_select_button_2",
+                  "data": {
+                    "props": {
+                      "name": "plan_type",
+                      "label": "Third Party",
+                      "value": "Third Party",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "qna3_select_button_3",
+                  "data": {
+                    "props": {
+                      "name": "plan_type",
+                      "label": "Not sure",
+                      "value": "Not sure",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "previous_policy_confirmation_qna_5",
+              "data": {
+                "row": 8,
+                "props": {
+                  "styles": {
+                    "width": "95%"
+                  },
+                  "dataset": {},
+                  "heading": "Who was your previous insurer?  (Optional)",
+                  "validate": {
+                    "regex": "",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": false,
+                  "payloadData": {
+                    "name": "previous_insurer_name",
+                    "value": ""
+                  },
+                  "sub_heading": null
+                }
+              },
+              "type": "qna",
+              "actions": {
+                "on_click": [
+                  {
+                    "args": {},
+                    "type": "submit_call"
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "id": "edit_mmv_details_edit_dropdown",
+                  "data": {
+                    "row": 2,
+                    "props": {
+                      "name": "previous_insurer_name",
+                      "label": "Previous Insurer",
+                      "value": null,
+                      "heading": "",
+                      "options": [
+                        {
+                          "value": "Tata",
+                          "displayValue": "Tata"
+                        },
+                        {
+                          "value": "Reliance",
+                          "displayValue": "Reliance"
+                        }
+                      ],
+                      "is_visible": true
+                    }
+                  },
+                  "type": "dropdown",
+                  "actions": {
+                    "onChange": [
+                      {
+                        "args": {},
+                        "type": "on_change"
+                      }
+                    ]
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "page_footer",
+      "data": {
+        "props": {
+          "text": "By proceeding, you agree to our",
+          "label": "",
+          "style": {
+            "padding": "20px",
+            "maxWidth": "360px"
+          },
+          "is_visible": true,
+          "underlined_text": "Terms & Conditions"
+        },
+        "column": 3
+      },
+      "type": "footer",
+      "children": [
+        {
+          "id": "footer_cta",
+          "data": {
+            "props": {
+              "label": "Update",
+              "styles": {
+                "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                "border_radius": "8px"
+              },
+              "is_visible": true
+            }
+          },
+          "type": "primary_button",
+          "actions": {
+            "on_click": [
+              {
+                "args": {
+                  "journey": "fresh_car",
+                  "expected_node": "",
+                  "required_fields": [
+                    "previous_policy_confirmation_qna_1",
+                    "previous_policy_confirmation_qna_2",
+                    "previous_policy_confirmation_qna_3",
+                    "previous_policy_confirmation_qna_4",
+                    "previous_policy_confirmation_qna_5",
+                    "previous_policy_confirmation_qna_6"
+                  ]
+                },
+                "type": "validateAndFetchConfigAndRedirect"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "meta_data": {
+    "link": "",
+    "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+    "description": ""
+  },
+  "current_node": "previous_policy_confirmation_node"
+}

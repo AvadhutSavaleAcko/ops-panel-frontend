@@ -1,0 +1,518 @@
+{
+  "url": {
+    "base_path": "",
+    "host_name": "",
+    "query_params": {
+      "ekey": "#proposal.ekey"
+    }
+  },
+  "actions": [
+    {
+      "args": {
+        "data": {
+          "avaliablePlans": [],
+          "selectedPlanId": "#proposal.policy_attributes.plan.plan_id"
+        },
+        "eventName": "view_page_prequote_page",
+        "eventType": "pageView"
+      },
+      "type": "useAnalytics"
+    }
+  ],
+  "children": [
+    {
+      "id": "quote_screen_header",
+      "data": {
+        "props": {
+          "is_visible": true,
+          "back_button": true
+        },
+        "column": 1
+      },
+      "type": "header"
+    },
+    {
+      "id": "quote_screen_two_column_layout",
+      "data": {
+        "props": {
+          "is_visible": true
+        },
+        "column": 2
+      },
+      "type": "flex_container",
+      "children": [
+        {
+          "id": "quote_sceeen_left_nav",
+          "data": {
+            "props": {
+              "steps": [
+                {
+                  "name": "Car details",
+                  "status": "progress"
+                },
+                {
+                  "name": "Personal details",
+                  "status": "pending"
+                },
+                {
+                  "name": "Plan selection",
+                  "status": "pending"
+                },
+                {
+                  "name": "Review",
+                  "status": "pending"
+                }
+              ],
+              "style": {
+                "background": "#EFE9FB"
+              },
+              "is_visible": true
+            },
+            "column": 1
+          },
+          "type": "left_navigation"
+        },
+        {
+          "id": "quote_screen_data",
+          "data": {
+            "props": {
+              "style": {},
+              "is_visible": true
+            },
+            "column": 2
+          },
+          "type": "box_container",
+          "children": [
+            {
+              "id": "quote_screen_heading",
+              "data": {
+                "row": 1,
+                "props": {
+                  "text": "Select a plan",
+                  "style": {},
+                  "is_visible": true
+                }
+              },
+              "type": "page_heading"
+            },
+            {
+              "id": "plans_container",
+              "data": {
+                "row": 3,
+                "props": {
+                  "is_visible": true
+                },
+                "iterableKey": "plans.plans"
+              },
+              "type": "plans_container",
+              "children": [
+                {
+                  "id": "${#id}_plan",
+                  "data": {
+                    "props": {
+                      "plan_id": "#id",
+                      "premium": "#price.net_premium",
+                      "plan_name": "#display_name",
+                      "is_visible": true,
+                      "description": "#description",
+                      "is_selected": "#is_selected",
+                      "payloadData": {
+                        "type": "plan",
+                        "plan_id": "#id"
+                      }
+                    }
+                  },
+                  "type": "plan_card",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "type": "plan",
+                          "plan_id": "#id"
+                        },
+                        "type": "fetch_config_redirect"
+                      }
+                    ]
+                  },
+                  "children": [
+                    {
+                      "id": "${#id}_learn_more",
+                      "data": {
+                        "props": {
+                          "text": "Learn more",
+                          "is_visible": true
+                        }
+                      },
+                      "type": "hyperlink_text",
+                      "actions": {
+                        "on_click": [
+                          {
+                            "args": {
+                              "ids": "${#id}_covered_not_covered_addons_modal"
+                            },
+                            "type": "submit_call"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "${#id}_benefits_section_divider",
+                      "data": {
+                        "props": {
+                          "is_visible": [
+                            {
+                              "event": {
+                                "type": "show_benefits_section_divider"
+                              },
+                              "conditions": {
+                                "all": [
+                                  {
+                                    "fact": "benefits",
+                                    "path": "$.length",
+                                    "value": 0,
+                                    "operator": "notEqual"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "type": "section_divider"
+                    },
+                    {
+                      "id": "${#id}_benefits_container",
+                      "data": {
+                        "props": {
+                          "benefits": "#benefits",
+                          "is_visible": [
+                            {
+                              "event": {
+                                "type": "show_benefits_section"
+                              },
+                              "conditions": {
+                                "all": [
+                                  {
+                                    "fact": "benefits",
+                                    "path": "$.length",
+                                    "value": 0,
+                                    "operator": "notEqual"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "type": "benefits"
+                    },
+                    {
+                      "id": "${#id}_covered_not_covered_addons_modal",
+                      "data": {
+                        "props": {
+                          "heading": "${#display_name}",
+                          "is_visible": false,
+                          "subheading": ""
+                        }
+                      },
+                      "type": "modal",
+                      "actions": {
+                        "on_click": [
+                          {
+                            "args": {
+                              "ids": [],
+                              "reverseIds": "${#id}_covered_not_covered_addons_modal"
+                            },
+                            "type": "submit_call"
+                          }
+                        ]
+                      },
+                      "children": [
+                        {
+                          "id": "covered_not_covered_addons_section",
+                          "data": {
+                            "props": {
+                              "options": [
+                                {
+                                  "banner": null,
+                                  "optionId": "covered",
+                                  "isSelected": true,
+                                  "optionName": "Covered",
+                                  "iterableData": "#covered"
+                                },
+                                {
+                                  "banner": null,
+                                  "optionId": "not_covered",
+                                  "isSelected": false,
+                                  "optionName": "Not covered",
+                                  "iterableData": "#not_covered"
+                                },
+                                {
+                                  "banner": {
+                                    "icon": "",
+                                    "text": "Opt for additional covers in the next steps to enhance your car protection",
+                                    "type": "generic",
+                                    "styles": ""
+                                  },
+                                  "optionId": "addons",
+                                  "isSelected": false,
+                                  "optionName": "Available upgrades",
+                                  "iterableData": "#addons_v2"
+                                }
+                              ],
+                              "is_visible": true
+                            }
+                          },
+                          "type": "covered_not_covered_addons"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "${#id}_upgrades_section_divider",
+                      "data": {
+                        "props": {
+                          "is_visible": [
+                            {
+                              "event": {
+                                "type": "show_upgrades_section_divider"
+                              },
+                              "conditions": {
+                                "all": [
+                                  {
+                                    "fact": "upgrades",
+                                    "path": "$.length",
+                                    "value": 0,
+                                    "operator": "notEqual"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "type": "section_divider"
+                    },
+                    {
+                      "id": "upgrades_section",
+                      "data": {
+                        "props": {
+                          "styles": "  > * { padding: 1rem 0px; border-bottom: 1px solid #E0E0E8; } > :first-child { padding: 0px 0px 1rem; } > :last-child { padding: 1rem 0px 0px; border-bottom: none; } > :only-child {padding : 0px;}",
+                          "is_visible": [
+                            {
+                              "event": {
+                                "type": "show_upgrades_section"
+                              },
+                              "conditions": {
+                                "all": [
+                                  {
+                                    "fact": "upgrades",
+                                    "path": "$.length",
+                                    "value": 0,
+                                    "operator": "notEqual"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        },
+                        "iterableKey": "upgrades"
+                      },
+                      "type": "container",
+                      "children": [
+                        {
+                          "id": "upgrade",
+                          "data": {
+                            "props": {
+                              "is_visible": true,
+                              "description": "Covers 100% cost of replaced parts without any depreciation.",
+                              "is_selected": true,
+                              "payloadData": {
+                                "upgrade_id": "#id",
+                                "upgrade_type": "#type",
+                                "parent_plan_id": "#parent_plan_id"
+                              },
+                              "display_name": "Zero deprecation cover",
+                              "upgrade_highlight": "(Bumper to bumper)"
+                            }
+                          },
+                          "type": "upgrade_card",
+                          "actions": {
+                            "on_click": [
+                              {
+                                "args": {
+                                  "upgrade_id": "#id",
+                                  "upgrade_type": "#type"
+                                },
+                                "type": "fetch_config_redirect"
+                              }
+                            ]
+                          },
+                          "children": [
+                            {
+                              "id": "${#id}_learn_more_3",
+                              "data": {
+                                "props": {
+                                  "text": "Learn more",
+                                  "is_visible": [
+                                    {
+                                      "event": {
+                                        "type": "show_learn_more"
+                                      },
+                                      "conditions": {
+                                        "all": [
+                                          {
+                                            "fact": "type",
+                                            "value": "addon",
+                                            "operator": "notEqual"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              "type": "hyperlink_text",
+                              "actions": {
+                                "on_click": [
+                                  {
+                                    "args": {
+                                      "ids": "zd_upgrade_modal"
+                                    },
+                                    "type": "submit_call"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "only_tp_cover_banner",
+              "data": {
+                "row": 4,
+                "props": {
+                  "text": "<>We don't provide a <b>Comprehensive Plan</b> for cars over 10 years old. This is because as cars age, their value decreases. Eventually, the repair and depreciation costs can exceed the car's market value.</>",
+                  "is_visible": [
+                    {
+                      "event": {
+                        "type": "show_only_tp_cover_banner"
+                      },
+                      "conditions": {
+                        "all": [
+                          {
+                            "fact": "plans",
+                            "path": "$.plans.length",
+                            "value": 0,
+                            "operator": "equal"
+                          },
+                          {
+                            "fact": "plans",
+                            "path": "$.plans[0].id",
+                            "value": "car_tp",
+                            "operator": "equal"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "type": "banner"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "page_footer",
+      "data": {
+        "props": {
+          "text": "By proceeding, you agree to our",
+          "style": {
+            "padding": "20px",
+            "maxWidth": "360px"
+          },
+          "is_visible": true,
+          "underlined_text": "Terms & Conditions"
+        },
+        "column": 3
+      },
+      "type": "footer",
+      "children": [
+        {
+          "id": "footer_container",
+          "data": {
+            "props": {
+              "styles": {
+                "display": "flex",
+                "padding": "8px 16px",
+                "align-items": "center",
+                "flex-direction": "row",
+                "justify-content": "space-between"
+              },
+              "is_visible": true
+            }
+          },
+          "type": "container",
+          "children": [
+            {
+              "id": "footer_price",
+              "data": {
+                "props": {
+                  "price": "#premium.price.net_premium"
+                }
+              },
+              "type": "footer_price"
+            },
+            {
+              "id": "footer_cta_container",
+              "data": {
+                "props": {
+                  "styles": {
+                    "width": "168px"
+                  },
+                  "is_visible": true
+                }
+              },
+              "type": "container",
+              "children": [
+                {
+                  "id": "footer_cta",
+                  "data": {
+                    "props": {
+                      "label": "Proceed",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "primary_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "meta_data": {
+    "link": "",
+    "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+    "description": ""
+  },
+  "current_node": "plan_selection_node"
+}

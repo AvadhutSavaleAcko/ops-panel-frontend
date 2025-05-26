@@ -1,0 +1,306 @@
+{
+    "url": {
+      "base_path": "",
+      "host_name": "",
+      "query_params": {
+        "ekey": "#proposal.ekey"
+      }
+    },
+    "actions": {
+      "on_load": [
+        {
+          "args": {
+            "data": {
+              "is_new": "false",
+              "origin": "acko",
+              "product": "car"
+            },
+            "journey": "fresh_car"
+          },
+          "type": "on_load"
+        }
+      ]
+    },
+    "children": [
+      {
+        "id": "coverage_screen_header",
+        "data": {
+          "props": {
+            "label": "",
+            "imgSrc": "",
+            "is_visible": true,
+            "back_button": true
+          },
+          "column": 1
+        },
+        "type": "header"
+      },
+      {
+        "id": "coverage_screen_two_column_layout",
+        "data": {
+          "props": {
+            "is_visible": true
+          },
+          "column": 2
+        },
+        "type": "flex_container",
+        "children": [
+          {
+            "id": "coverage_sceeen_left_nav",
+            "data": {
+              "props": {
+                "steps": [
+                  {
+                    "name": "Car details",
+                    "status": "progress"
+                  },
+                  {
+                    "name": "Personal details",
+                    "status": "pending"
+                  },
+                  {
+                    "name": "Plan selection",
+                    "status": "pending"
+                  },
+                  {
+                    "name": "Review",
+                    "status": "pending"
+                  }
+                ],
+                "style": {
+                  "background": "#EFE9FB"
+                },
+                "is_visible": true
+              },
+              "column": 1
+            },
+            "type": "left_navigation"
+          },
+          {
+            "id": "coverage_screen_data",
+            "data": {
+              "props": {
+                "style": {},
+                "is_visible": true
+              },
+              "column": 2
+            },
+            "type": "layout",
+            "children": [
+              {
+                "id": "coverage_screen_heading",
+                "data": {
+                  "row": 1,
+                  "props": {
+                    "text": "Select plan type",
+                    "style": {},
+                    "is_visible": true
+                  }
+                },
+                "type": "page_heading"
+              },
+              {
+                "id": "plans_container",
+                "data": {
+                  "row": 3,
+                  "props": {
+                    "pageData": {
+                      "price": "#planDetails.selected_plan.price.net_premium"
+                    },
+                    "is_visible": true
+                  },
+                  "iterableKey": "plans.covers"
+                },
+                "type": "plans_container",
+                "children": [
+                  {
+                    "id": "${#id}_plan",
+                    "data": {
+                      "props": {
+                        "badge": {
+                          "text": "#primary_tag.text",
+                          "type": "#primary_tag.type",
+                          "is_visible": true
+                        },
+                        "planId": "#id",
+                        "premium": "#display_premium",
+                        "planName": "#display_name",
+                        "isSelected": "#is_selected",
+                        "is_visible": true,
+                        "description": "#description",
+                        "payloadData": {
+                            "key":"plan_id",
+                            "value":"#id"
+                        }
+                      }
+                    },
+                    "type": "plan_card",
+                    "children": [
+                      {
+                        "id": "${#id}_learn_more",
+                        "data": {
+                          "props": {
+                            "text": "Learn more",
+                            "type": "UNDERLINE",
+                            "styles": {
+                              "margin": "0.5rem 0px 0px"
+                            },
+                            "is_visible": true
+                          }
+                        },
+                        "type": "hyperlink_text",
+                        "actions": {
+                          "on_click": [
+                            {
+                              "args": {
+                                "ids": "${#id}_covered_not_covered_addons_modal"
+                              },
+                              "type": "submit_call"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "${#id}_covered_not_covered_addons_modal",
+                        "data": {
+                          "props": {
+                            "is_visible": false,
+                            "subheading": "",
+                            "modalHeading": "${#display_name}",
+                            "modalHeadingStyles": {
+                              "color": "rgb(69, 25, 153)"
+                            }
+                          }
+                        },
+                        "type": "bottomsheet",
+                        "actions": {
+                          "on_click": [
+                            {
+                              "args": {
+                                "reverseIds": "${#id}_covered_not_covered_addons_modal"
+                              },
+                              "type": "submit_call"
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "id": "covered_not_covered_addons_section",
+                            "data": {
+                              "props": {
+                                "options": [
+                                  {
+                                    "optionId": "covered",
+                                    "isSelected": true,
+                                    "optionName": "Covered",
+                                    "iterableData": "#covered"
+                                  },
+                                  {
+                                    "optionId": "not_covered",
+                                    "isSelected": false,
+                                    "optionName": "Not covered",
+                                    "iterableData": "#not_covered"
+                                  }
+                                ],
+                                "is_visible": true
+                              }
+                            },
+                            "type": "covered_not_covered_addons"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "page_footer",
+        "data": {
+          "props": {
+            "text": "By proceeding, you agree to our",
+            "style": {
+              "padding": "20px",
+              "maxWidth": "360px"
+            },
+            "is_visible": true,
+            "underlined_text": "Terms & Conditions"
+          },
+          "column": 3
+        },
+        "type": "footer",
+        "children": [
+          {
+            "id": "footer_container",
+            "data": {
+              "props": {
+                "styles": {
+                  "display": "flex",
+                  "padding": "8px 16px",
+                  "align-items": "center",
+                  "flex-direction": "row",
+                  "justify-content": "space-between"
+                },
+                "display": "flex",
+                "is_visible": true
+              }
+            },
+            "type": "container",
+            "children": [
+              {
+                "id": "footer_price",
+                "data": {
+                  "props": {
+                    "price": "",
+                    "is_visible": true
+                  }
+                },
+                "type": "footer_price"
+              },
+              {
+                "id": "footer_cta_container",
+                "data": {
+                  "props": {
+                    "styles": {
+                      "width": "168px"
+                    },
+                    "display": "flex",
+                    "is_visible": true
+                  }
+                },
+                "type": "container",
+                "children": [
+                  {
+                    "id": "footer_cta",
+                    "data": {
+                      "props": {
+                        "label": "Proceed",
+                        "styles": {
+                          "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                          "border_radius": "8px"
+                        },
+                        "is_visible": true
+                      }
+                    },
+                    "type": "primary_button",
+                    "actions": {
+
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "meta_data": {
+      "link": "",
+      "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+      "description": ""
+    },
+    "current_node": "tp_only_plan_node"
+  }

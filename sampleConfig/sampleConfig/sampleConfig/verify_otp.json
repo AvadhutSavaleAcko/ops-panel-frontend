@@ -1,0 +1,304 @@
+{
+  "url": {
+    "base_path": "fresh-car/verify-otp",
+    "host_name": "",
+    "query_params": {
+      "ekey": "#proposal.ekey"
+    }
+  },
+  "actions": {
+    "on_load": [
+      {
+        "args": {
+          "data": {
+            "is_new": "false",
+            "origin": "acko",
+            "product": "car"
+          },
+          "journey": "fresh_car"
+        },
+        "type": "on_load"
+      }
+    ]
+  },
+  "children": [
+    {
+      "id": "verify_otp_node_header",
+      "data": {
+        "props": {
+          "label": "",
+          "imgSrc": "",
+          "is_visible": true,
+          "back_button": true
+        },
+        "column": null
+      },
+      "type": "header"
+    },
+    {
+      "id": "verify_otp_node_two_column_layout",
+      "data": {
+        "props": {
+          "is_visible": true
+        }
+      },
+      "type": "flex_container",
+      "children": [
+        {
+          "id": "verify_otp_node_left_nav",
+          "data": {
+            "props": {
+              "steps": [
+                {
+                  "name": "Car details",
+                  "status": "complete"
+                },
+                {
+                  "name": "Personal details",
+                  "status": "complete"
+                },
+                {
+                  "name": "Plan selection",
+                  "status": "complete"
+                },
+                {
+                  "name": "Verify and review",
+                  "status": "progress"
+                }
+              ],
+              "style": {
+                "background": "#EFE9FB"
+              },
+              "is_visible": true
+            },
+            "coloum": 1
+          },
+          "type": "left_navigation"
+        },
+        {
+          "id": "verify_otp_node_box_container",
+          "data": {
+            "props": {
+              "style": {},
+              "is_visible": true
+            },
+            "coloum": 2
+          },
+          "type": "layout",
+          "children": [
+            {
+              "id": "verify_otp_screen_id",
+              "data": {
+                "props": {
+                  "phone": "#proposal.user.phone",
+                  "style": {},
+                  "title": "Verify your phone number",
+                  "cueText": "",
+                  "subTitle": "Enter the code sent to",
+                  "validate": {
+                    "regex": "",
+                    "requiredErrorMessage": "Enter a valid otp"
+                  },
+                  "is_visible": true,
+                  "payloadData": {
+                    "name": "otp",
+                    "value": ""
+                  },
+                  "verifyOTPApiResp": {
+                    "isError": false,
+                    "errorMessage": ""
+                  },
+                  "mobileNumberVerified": "#proposal.context.mobile_verified"
+                }
+              },
+              "type": "verify_otp",
+              "actions": {
+                "on_edit_click": [
+                  {
+                    "args": {
+                      "ids": "verify_otp_modal_two_column_layout"
+                    },
+                    "type": "submit_call"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "verify_otp_modal_two_column_layout",
+              "data": {
+                "props": {
+                  "bodyStyles": {
+                    "display": "flex",
+                    "align-items": "flex-start",
+                    "flex-direction": "column",
+                    "justify-content": "center"
+                  },
+                  "is_visible": false
+                },
+                "column": 2
+              },
+              "type": "bottomsheet",
+              "actions": {
+                "on_click": [
+                  {
+                    "args": {
+                      "reverseIds": "verify_otp_modal_two_column_layout"
+                    },
+                    "type": "submit_call"
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "id": "verify_otp_modal_heading",
+                  "data": {
+                    "row": 1,
+                    "props": {
+                      "text": "Just one quick question to ensure you get the right coverage",
+                      "type": "",
+                      "styles": {
+                        "text-align": "left"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "typography"
+                },
+                {
+                  "id": "verify_otp_modal_phone_number",
+                  "data": {
+                    "row": 2,
+                    "props": {
+                      "name": "phone_number",
+                      "type": "tel",
+                      "styles": {},
+                      "cueText": "We will only use this to send policy updates",
+                      "heading": "Your phone number",
+                      "validate": {
+                        "regex": "^[6-9]\\d{9}$",
+                        "inValidErrorMessage": "Enter a valid Phone number",
+                        "requiredErrorMessage": "This is a mandatory field"
+                      },
+                      "is_visible": true,
+                      "payloadData": {
+                        "name": "phone",
+                        "value": "#proposal.user.phone"
+                      },
+                      "placeholder": "Phone number",
+                      "defaultValue": "",
+                      "phone_number": ""
+                    }
+                  },
+                  "type": "inputfield",
+                  "actions": {
+                    "on_change": [
+                      {}
+                    ]
+                  }
+                },
+                {
+                  "id": "footer_cta",
+                  "data": {
+                    "row": 3,
+                    "props": {
+                      "label": "Confirm",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true,
+                      "mobileNumberVerified": "#proposal.context.mobile_verified",
+                      "proposalMobileNumber": "#proposal.user.phone"
+                    }
+                  },
+                  "type": "hcaptcha_primary_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "journey": "fresh_car",
+                          "expected_node": "",
+                          "required_fields": [
+                            "verify_otp_modal_phone_number"
+                          ]
+                        },
+                        "type": "validateDataAndFields"
+                      }
+                    ],
+                    "on_send_otp": [
+                      {
+                        "args": {
+                          "reverseIds": "verify_otp_modal_two_column_layout"
+                        },
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "page_footer",
+      "data": {
+        "props": {
+          "label": "",
+          "style": {
+            "padding": "20px",
+            "maxWidth": "360px"
+          },
+          "cueText": "",
+          "is_visible": true
+        }
+      },
+      "type": "footer",
+      "children": [
+        {
+          "id": "footer_cta",
+          "data": {
+            "props": {
+              "name": "",
+              "label": "Verify",
+              "styles": {
+                "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                "border_radius": "8px"
+              },
+              "is_visible": true
+            }
+          },
+          "type": "primary_button",
+          "actions": {
+            "verify_otp_click": [
+              {
+                "args": {
+                  "journey": "fresh_car",
+                  "expected_node": "",
+                  "required_fields": [
+                    "verify_otp_screen_id"
+                  ]
+                },
+                "type": "validateDataAndFields"
+              },
+              {
+                "args": {
+                  "journey": "fresh_car",
+                  "expected_node": ""
+                },
+                "type": "verify_otp_redirect"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "meta_data": {
+    "link": "",
+    "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+    "description": ""
+  },
+  "current_node": "verify_otp_node"
+}

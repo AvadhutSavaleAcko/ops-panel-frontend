@@ -1,0 +1,651 @@
+{
+    "url": {
+        "base_path": "",
+        "host_name": "",
+        "query_params": {
+            "ekey": "nKUPdIlHbyz1oAMaUhNEWw"
+        }
+    },
+    "actions": {
+        "on_load": [
+            {
+                "args": {
+                    "data": {
+                        "is_new": "false",
+                        "origin": "acko",
+                        "product": "car"
+                    },
+                    "journey": "fresh_car"
+                },
+                "type": "on_load"
+            }
+        ]
+    },
+    "children": [
+        {
+            "id": "coverage_screen_header",
+            "data": {
+                "props": {
+                    "label": "",
+                    "imgSrc": "",
+                    "is_visible": true,
+                    "back_button": true
+                },
+                "column": 1
+            },
+            "type": "header"
+        },
+        {
+            "id": "coverage_screen_two_column_layout",
+            "data": {
+                "props": {
+                    "is_visible": true
+                },
+                "column": 2
+            },
+            "type": "flex_container",
+            "children": [
+                {
+                    "id": "coverage_sceeen_left_nav",
+                    "data": {
+                        "props": {
+                            "steps": [
+                                {
+                                    "name": "Car details",
+                                    "status": "progress"
+                                },
+                                {
+                                    "name": "Personal details",
+                                    "status": "pending"
+                                },
+                                {
+                                    "name": "Plan selection",
+                                    "status": "pending"
+                                },
+                                {
+                                    "name": "Review",
+                                    "status": "pending"
+                                }
+                            ],
+                            "style": {
+                                "background": null
+                            },
+                            "is_visible": true
+                        },
+                        "column": 1
+                    },
+                    "type": "left_navigation"
+                },
+                {
+                    "id": "coverage_screen_data",
+                    "data": {
+                        "props": {
+                            "style": {},
+                            "is_visible": true
+                        },
+                        "column": 2
+                    },
+                    "type": "layout",
+                    "children": [
+                        {
+                            "id": "coverage_screen_heading",
+                            "data": {
+                                "row": 1,
+                                "props": {
+                                    "text": "Select plan type",
+                                    "style": {},
+                                    "is_visible": true
+                                }
+                            },
+                            "type": "page_heading"
+                        },
+                        {
+                            "id": "idv_section",
+                            "data":{
+                                "props":{
+                                    "is_visible":true,
+                                    "idvData":"#plans.idv"
+                                }
+                            },
+                            "type":"idv_section"
+
+                        },
+                        {
+                            "id": "plans_container",
+                            "data": {
+                                "row": 3,
+                                "props": {
+                                    "pageData": {
+                                        "price": 3416
+                                    },
+                                    "is_visible": true
+                                },
+                                "iterableKey": "plans.covers"
+                            },
+                            "type": "plans_container",
+                            "children": [
+                                {
+                                    "id": "car_tp_plan_1",
+                                    "data": {
+                                        "props": {
+                                            "badge": {
+                                                "text": "Minimum coverage required by law",
+                                                "type": "",
+                                                "is_visible": true
+                                            },
+                                            "planId": "car_tp",
+                                            "premium": "₹ 3,416",
+                                            "planName": "Third-party Plan",
+                                            "isSelected": null,
+                                            "is_visible": true,
+                                            "description": "It covers damage caused by your car to others and their property, but does not cover any damage caused to your car.",
+                                            "showLearnMore": true
+                                        }
+                                    },
+                                    "type": "plan_card",
+                                    "actions": {
+                                        "on_click": [
+                                            {
+                                                "args": {
+                                                    "component_id": "footer_price",
+                                                    "update_props": {
+                                                        "price": "₹ 3,416"
+                                                    }
+                                                },
+                                                "type": "updateProps"
+                                            },
+                                            {
+                                                "args": {
+                                                    "price": "₹ 3,416"
+                                                },
+                                                "type": "setGlobalData"
+                                            }
+                                        ],
+                                        "learn_more_on_click": [
+                                            {
+                                                "args": {
+                                                    "ids": "car_tp_covered_not_covered_addons_modal"
+                                                },
+                                                "type": "submit_call"
+                                            }
+                                        ]
+                                    },
+                                    "children": [
+                                        {
+                                            "id": "car_tp_benefits_section_divider",
+                                            "data": {
+                                                "props": {
+                                                    "is_visible": false
+                                                }
+                                            },
+                                            "type": "section_divider"
+                                        },
+                                        {
+                                            "id": "car_tp_benefits_container",
+                                            "data": {
+                                                "props": {
+                                                    "benefits": [],
+                                                    "is_visible": false
+                                                }
+                                            },
+                                            "type": "benefits"
+                                        },
+                                        {
+                                            "id": "car_tp_covered_not_covered_addons_modal",
+                                            "data": {
+                                                "props": {
+                                                    "is_visible": false,
+                                                    "subheading": "",
+                                                    "modalHeading": "Third-party Plan",
+                                                    "modalHeadingStyles": {
+                                                        "color": "rgb(69, 25, 153)"
+                                                    }
+                                                }
+                                            },
+                                            "type": "bottomsheet",
+                                            "actions": {
+                                                "on_click": [
+                                                    {
+                                                        "args": {
+                                                            "reverseIds": "car_tp_covered_not_covered_addons_modal"
+                                                        },
+                                                        "type": "submit_call"
+                                                    }
+                                                ]
+                                            },
+                                            "children": [
+                                                {
+                                                    "id": "covered_not_covered_addons_section",
+                                                    "data": {
+                                                        "props": {
+                                                            "addonId": "car_tp",
+                                                            "options": [
+                                                                {
+                                                                    "optionId": "zd_details",
+                                                                    "isSelected": true,
+                                                                    "optionName": "Zero Depreciation",
+                                                                    "iterableData": []
+                                                                },
+                                                                {
+                                                                    "optionId": "covered",
+                                                                    "isSelected": true,
+                                                                    "optionName": "Covered",
+                                                                    "iterableData": null
+                                                                },
+                                                                {
+                                                                    "optionId": "not_covered",
+                                                                    "isSelected": false,
+                                                                    "optionName": "Not covered",
+                                                                    "iterableData": null
+                                                                },
+                                                                {
+                                                                    "banner": {
+                                                                        "icon": "",
+                                                                        "text": "Opt for additional covers in the next steps to enhance your car protection",
+                                                                        "type": "GENERIC",
+                                                                        "styles": ""
+                                                                    },
+                                                                    "optionId": "addons",
+                                                                    "isSelected": false,
+                                                                    "optionName": "Available upgrades",
+                                                                    "iterableData": null
+                                                                }
+                                                            ],
+                                                            "is_visible": true
+                                                        }
+                                                    },
+                                                    "type": "covered_not_covered_addons"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "car_comprehensive_plan_2",
+                                    "data": {
+                                        "props": {
+                                            "badge": {
+                                                "text": "",
+                                                "type": "",
+                                                "is_visible": true
+                                            },
+                                            "planId": "car_comprehensive",
+                                            "premium": "₹ 5,369",
+                                            "planName": "Comprehensive Plans",
+                                            "isSelected": null,
+                                            "is_visible": true,
+                                            "description": "This plan includes fire, theft, accident, and third party liability cover.",
+                                            "showLearnMore": true
+                                        }
+                                    },
+                                    "type": "plan_card",
+                                    "actions": {
+                                        "on_click": [
+                                            {
+                                                "args": {
+                                                    "component_id": "footer_price",
+                                                    "update_props": {
+                                                        "price": "₹ 5,369"
+                                                    }
+                                                },
+                                                "type": "updateProps"
+                                            },
+                                            {
+                                                "args": {
+                                                    "price": "₹ 5,369"
+                                                },
+                                                "type": "setGlobalData"
+                                            }
+                                        ],
+                                        "learn_more_on_click": [
+                                            {
+                                                "args": {
+                                                    "ids": "car_comprehensive_covered_not_covered_addons_modal"
+                                                },
+                                                "type": "submit_call"
+                                            }
+                                        ]
+                                    },
+                                    "children": [
+                                        {
+                                            "id": "car_comprehensive_benefits_section_divider",
+                                            "data": {
+                                                "props": {
+                                                    "is_visible": true
+                                                }
+                                            },
+                                            "type": "section_divider"
+                                        },
+                                        {
+                                            "id": "car_comprehensive_benefits_container",
+                                            "data": {
+                                                "props": {
+                                                    "benefits": [
+                                                        {
+                                                            "desciption": "Cashless claims at 5,400+ garages",
+                                                            "image": "image here"
+                                                        },
+                                                        {
+                                                            "desciption": "Free car pick up and drop during a claim",
+                                                            "image": "image here"
+                                                        },
+                                                        {
+                                                            "desciption": "Real-time repair updates",
+                                                            "image": "image here"
+                                                        }
+                                                    ],
+                                                    "is_visible": true
+                                                }
+                                            },
+                                            "type": "benefits"
+                                        },
+                                        {
+                                            "id": "car_comprehensive_covered_not_covered_addons_modal",
+                                            "data": {
+                                                "props": {
+                                                    "is_visible": false,
+                                                    "subheading": "",
+                                                    "modalHeading": "Comprehensive Plans",
+                                                    "modalHeadingStyles": {
+                                                        "color": "rgb(69, 25, 153)"
+                                                    }
+                                                }
+                                            },
+                                            "type": "bottomsheet",
+                                            "actions": {
+                                                "on_click": [
+                                                    {
+                                                        "args": {
+                                                            "reverseIds": "car_comprehensive_covered_not_covered_addons_modal"
+                                                        },
+                                                        "type": "submit_call"
+                                                    }
+                                                ]
+                                            },
+                                            "children": [
+                                                {
+                                                    "id": "covered_not_covered_addons_section",
+                                                    "data": {
+                                                        "props": {
+                                                            "addonId": "car_comprehensive",
+                                                            "options": [
+                                                                {
+                                                                    "optionId": "zd_details",
+                                                                    "isSelected": true,
+                                                                    "optionName": "Zero Depreciation",
+                                                                    "iterableData": []
+                                                                },
+                                                                {
+                                                                    "optionId": "covered",
+                                                                    "isSelected": true,
+                                                                    "optionName": "Covered",
+                                                                    "iterableData": null
+                                                                },
+                                                                {
+                                                                    "optionId": "not_covered",
+                                                                    "isSelected": false,
+                                                                    "optionName": "Not covered",
+                                                                    "iterableData": null
+                                                                },
+                                                                {
+                                                                    "banner": {
+                                                                        "icon": "",
+                                                                        "text": "Opt for additional covers in the next steps to enhance your car protection",
+                                                                        "type": "GENERIC",
+                                                                        "styles": ""
+                                                                    },
+                                                                    "optionId": "addons",
+                                                                    "isSelected": false,
+                                                                    "optionName": "Available upgrades",
+                                                                    "iterableData": null
+                                                                }
+                                                            ],
+                                                            "is_visible": true
+                                                        }
+                                                    },
+                                                    "type": "covered_not_covered_addons"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "car_acko_garage_zero_dep_deductible_plan_3",
+                                    "data": {
+                                        "props": {
+                                            "badge": {
+                                                "text": "",
+                                                "type": "",
+                                                "is_visible": true
+                                            },
+                                            "planId": "car_acko_garage_zero_dep_deductible",
+                                            "premium": "₹ 9,576",
+                                            "planName": "Zero Depreciation Plan",
+                                            "isSelected": null,
+                                            "is_visible": true,
+                                            "description": "This is a lower-priced plan that requires you to get your car repaired at one of ACKO’s network garages during a claim. <b>Explore 100+ network garages near you.</b>",
+                                            "showLearnMore": true
+                                        }
+                                    },
+                                    "type": "plan_card",
+                                    "actions": {
+                                        "on_click": [
+                                            {
+                                                "args": {
+                                                    "component_id": "footer_price",
+                                                    "update_props": {
+                                                        "price": "₹ 9,576"
+                                                    }
+                                                },
+                                                "type": "updateProps"
+                                            },
+                                            {
+                                                "args": {
+                                                    "price": "₹ 9,576"
+                                                },
+                                                "type": "setGlobalData"
+                                            }
+                                        ],
+                                        "learn_more_on_click": [
+                                            {
+                                                "args": {
+                                                    "ids": "car_acko_garage_zero_dep_deductible_covered_not_covered_addons_modal"
+                                                },
+                                                "type": "submit_call"
+                                            }
+                                        ]
+                                    },
+                                    "children": [
+                                        {
+                                            "id": "car_acko_garage_zero_dep_deductible_benefits_section_divider",
+                                            "data": {
+                                                "props": {
+                                                    "is_visible": true
+                                                }
+                                            },
+                                            "type": "section_divider"
+                                        },
+                                        {
+                                            "id": "car_acko_garage_zero_dep_deductible_benefits_container",
+                                            "data": {
+                                                "props": {
+                                                    "benefits": [
+                                                        {
+                                                            "desciption": "Cashless claims at 5,400+ garages",
+                                                            "image": ""
+                                                        },
+                                                        {
+                                                            "desciption": "Free car pick up and drop",
+                                                            "image": ""
+                                                        },
+                                                        {
+                                                            "desciption": "Real-time repair updates",
+                                                            "image": ""
+                                                        }
+                                                    ],
+                                                    "is_visible": true
+                                                }
+                                            },
+                                            "type": "benefits"
+                                        },
+                                        {
+                                            "id": "car_acko_garage_zero_dep_deductible_covered_not_covered_addons_modal",
+                                            "data": {
+                                                "props": {
+                                                    "is_visible": false,
+                                                    "subheading": "",
+                                                    "modalHeading": "Zero Depreciation Plan",
+                                                    "modalHeadingStyles": {
+                                                        "color": "rgb(69, 25, 153)"
+                                                    }
+                                                }
+                                            },
+                                            "type": "bottomsheet",
+                                            "actions": {
+                                                "on_click": [
+                                                    {
+                                                        "args": {
+                                                            "reverseIds": "car_acko_garage_zero_dep_deductible_covered_not_covered_addons_modal"
+                                                        },
+                                                        "type": "submit_call"
+                                                    }
+                                                ]
+                                            },
+                                            "children": [
+                                                {
+                                                    "id": "covered_not_covered_addons_section",
+                                                    "data": {
+                                                        "props": {
+                                                            "addonId": "car_acko_garage_zero_dep_deductible",
+                                                            "options": [
+                                                                {
+                                                                    "optionId": "zd_details",
+                                                                    "isSelected": true,
+                                                                    "optionName": "Zero Depreciation",
+                                                                    "iterableData": []
+                                                                },
+                                                                {
+                                                                    "optionId": "covered",
+                                                                    "isSelected": true,
+                                                                    "optionName": "Covered",
+                                                                    "iterableData": null
+                                                                },
+                                                                {
+                                                                    "optionId": "not_covered",
+                                                                    "isSelected": false,
+                                                                    "optionName": "Not covered",
+                                                                    "iterableData": null
+                                                                },
+                                                                {
+                                                                    "banner": {
+                                                                        "icon": "",
+                                                                        "text": "Opt for additional covers in the next steps to enhance your car protection",
+                                                                        "type": "GENERIC",
+                                                                        "styles": ""
+                                                                    },
+                                                                    "optionId": "addons",
+                                                                    "isSelected": false,
+                                                                    "optionName": "Available upgrades",
+                                                                    "iterableData": null
+                                                                }
+                                                            ],
+                                                            "is_visible": true
+                                                        }
+                                                    },
+                                                    "type": "covered_not_covered_addons"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "page_footer",
+            "data": {
+                "props": {
+                    "text": "By proceeding, you agree to our",
+                    "style": {
+                        "padding": "20px",
+                        "maxWidth": "360px"
+                    },
+                    "is_visible": true,
+                    "underlined_text": "Terms & Conditions"
+                },
+                "column": 3
+            },
+            "type": "footer",
+            "children": [
+                {
+                    "id": "footer_container",
+                    "data": {
+                        "props": {
+                            "styles": {
+                                "display": "flex",
+                                "padding": "8px 16px",
+                                "align-items": "center",
+                                "flex-direction": "row",
+                                "justify-content": "space-between"
+                            },
+                            "display": "flex",
+                            "is_visible": true
+                        }
+                    },
+                    "type": "box_container",
+                    "children": [
+                        {
+                            "id": "footer_price",
+                            "data": {
+                                "props": {
+                                    "price": "",
+                                    "is_visible": true
+                                }
+                            },
+                            "type": "footer_price"
+                        },
+                        {
+                            "id": "footer_cta_container",
+                            "data": {
+                                "props": {
+                                    "styles": {
+                                        "width": "168px"
+                                    },
+                                    "display": "flex",
+                                    "is_visible": true
+                                }
+                            },
+                            "type": "box_container",
+                            "children": [
+                                {
+                                    "id": "footer_cta",
+                                    "data": {
+                                        "props": {
+                                            "label": "Proceed",
+                                            "styles": {
+                                                "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                                                "border_radius": "8px"
+                                            },
+                                            "is_visible": true
+                                        }
+                                    },
+                                    "type": "primary_button",
+                                    "actions": {}
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "meta_data": {
+        "link": "",
+        "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+        "description": ""
+    },
+    "current_node": "plan_selection_node"
+}

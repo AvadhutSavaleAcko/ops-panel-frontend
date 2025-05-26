@@ -1,0 +1,52 @@
+{
+    "url": {
+        "base_path": "",
+        "host_name": "",
+        "query_params": {
+            "ekey": "vg5zNLka_rwsxAJv3cdhFA"
+        }
+    },
+    "actions": {
+        "on_load": [
+            {
+                "args": {
+                    "data": {
+                        "is_new": "false",
+                        "origin": "acko",
+                        "product": "car"
+                    },
+                    "journey": "fresh_car"
+                },
+                "type": "on_load"
+            }
+        ]
+    },
+    "children": [
+        {
+            "id": "payment_page_data",
+            "data": {
+                "props": {
+                    "payment_data": {
+                        "payment_attributes": {
+                            "redirection_url": "https://payment-service-ui-ng.ackodev.com/?id=lz4fez7lQ5S68YWPJJDL&tracker_id=964c283f-4953-4a42-a3f7-d71d2d50d32f&reference_id=KA09TU7655&product=CAR&journey=auto.private_car.mo",
+                            "order_id": "lz4fez7lQ5S68YWPJJDL",
+                            "total_amount": 10131.759999999998,
+                            "callback_url": "https://www.ackodev.com/falcon/payment-success-kyc?proposal_id=CmcdfQRO13Y6JMY6MI_McA",
+                            "name": "juhhjj",
+                            "email": "jgtyr@rert.co",
+                            "phone": "9083739288"
+                        }
+                    }
+                },
+                "column": 1
+            },
+            "type": "payment_data"
+        }
+    ],
+    "meta_data": {
+        "link": "",
+        "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+        "description": ""
+    },
+    "current_node": "payment_node"
+}

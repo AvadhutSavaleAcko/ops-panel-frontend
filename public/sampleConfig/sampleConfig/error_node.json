@@ -1,0 +1,58 @@
+{
+  "url": {
+    "base_path": "",
+    "host_name": "",
+    "query_params": {
+      "ekey": "#proposal.ekey"
+    }
+  },
+  "actions": {
+    "on_load": [
+      {
+        "args": {
+          "payloadData": {
+            "is_new": "false",
+            "origin": "acko",
+            "product": "car"
+          },
+          "requestBody": {
+            "journey": "fresh_car"
+          }
+        },
+        "type": "setRequestPayload"
+      }
+    ]
+  },
+  "children": [
+    {
+      "id": "enter_mmv_details_header",
+      "data": {
+        "props": {
+          "label": "mmv_header",
+          "imgSrc": "",
+          "is_visible": true,
+          "back_button": true
+        },
+        "column": 1
+      },
+      "type": "header"
+    },
+    {
+      "id": "error_page_data",
+      "data": {
+        "props": {
+          "is_visible": true,
+          "registration_number": "#proposal.vehicle.registration_number"
+        },
+        "column": 1
+      },
+      "type": "error_page"
+    }
+  ],
+  "meta_data": {
+    "link": "",
+    "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+    "description": ""
+  },
+  "current_node": "payment_node"
+}

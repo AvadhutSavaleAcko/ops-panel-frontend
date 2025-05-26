@@ -1,0 +1,441 @@
+{
+  "url": {
+    "base_path": "",
+    "host_name": "",
+    "query_params": {
+      "ekey": "#proposal.ekey"
+    }
+  },
+  "actions": [
+    {
+      "args": {
+        "data": {},
+        "eventName": "view_edit_mmv_details_page",
+        "eventType": "pageView"
+      },
+      "type": "useAnalytics"
+    }
+  ],
+  "children": [
+    {
+      "id": "edit_mmv_details_header",
+      "data": {
+        "props": {
+          "label": "",
+          "is_visible": true,
+          "back_button": true
+        },
+        "column": null
+      },
+      "type": "header"
+    },
+    {
+      "id": "two_column_layout",
+      "data": {
+        "props": {
+          "is_visible": true
+        }
+      },
+      "type": "flex_container",
+      "children": [
+        {
+          "id": "pre_quote_left_nav",
+          "data": {
+            "props": {
+              "steps": [
+                {
+                  "name": "Car details",
+                  "status": "progress"
+                },
+                {
+                  "name": "Personal details",
+                  "status": "pending"
+                },
+                {
+                  "name": "Select plan",
+                  "status": "pending"
+                },
+                {
+                  "name": "Discounts",
+                  "status": "pending"
+                },
+                {
+                  "name": "Insured value",
+                  "status": "pending"
+                },
+                {
+                  "name": "Additional covers",
+                  "status": "pending"
+                },
+                {
+                  "name": "Verify and review",
+                  "status": "pending"
+                }
+              ],
+              "style": {
+                "background": "#EFE9FB"
+              },
+              "coloum": 1,
+              "completed": 2,
+              "is_visible": true,
+              "total_step": 7,
+              "current_step": 3
+            }
+          },
+          "type": "left_navigation"
+        },
+        {
+          "id": "edit_mmv_details_data",
+          "data": {
+            "props": {
+              "style": {},
+              "is_visible": true
+            },
+            "coloum": 2
+          },
+          "type": "box_container",
+          "children": [
+            {
+              "id": "edit_mmv_details_page_heading",
+              "data": {
+                "row": 1,
+                "props": {
+                  "text": "Edit your car and policy details",
+                  "style": {},
+                  "is_visible": true
+                }
+              },
+              "type": "page_heading"
+            },
+            {
+              "id": "enter_mmv_details_main_container",
+              "data": {
+                "row": 2,
+                "props": {
+                  "styles": {},
+                  "heading": "",
+                  "is_visible": true,
+                  "payloadData": {
+                    "name": "mmv_container",
+                    "value": ""
+                  },
+                  "sub_heading": null
+                }
+              },
+              "type": "mmv_container",
+              "children": [
+                {
+                  "id": "select_make",
+                  "data": {
+                    "props": {
+                      "id": "make",
+                      "make": "#proposal.vehicle.make_name",
+                      "name": "make",
+                      "label": "Select make & model",
+                      "model": "#proposal.vehicle.model_name",
+                      "value": "${make} ${model}",
+                      "readonly": true,
+                      "is_visible": true,
+                      "placeholder": "Select brand & model",
+                      "mmvId": "make"
+                    }
+                  },
+                  "type": "mmv_input_field"
+                },
+                {
+                  "id": "fuel_type_container",
+                  "data": {
+                    "props": {
+                      "id": "fuel_type",
+                      "name": "fuel_type",
+                      "label": "Select fuel type",
+                      "value": "#proposal.vehicle.fuel_type",
+                      "readonly": true,
+                      "is_visible": true,
+                      "placeholder": "Select fuel type",
+                      "mmvId": "fuel_type"
+                    }
+                  },
+                  "type": "mmv_input_field"
+                },
+                {
+                  "id": "variant_container",
+                  "data": {
+                    "props": {
+                      "id": "variant",
+                      "name": "variant",
+                      "label": "Select Variant",
+                      "value": "#proposal.vehicle.variant_name",
+                      "readonly": true,
+                      "is_visible": true,
+                      "placeholder": "Select Variant",
+                      "mmvId": "variant"
+                    }
+                  },
+                  "type": "mmv_input_field"
+                },
+                {
+                  "id": "reg_year_container",
+                  "data": {
+                    "props": {
+                      "id": "registration_year",
+                      "name": "registration_year",
+                      "label": "Select registration year",
+                      "value": "${regd_year}",
+                      "readonly": true,
+                      "regd_year": "#proposal.vehicle.registration_year",
+                      "is_visible": true,
+                      "regd_month": "#proposal.vehicle.registration_month",
+                      "placeholder": "Select registration year",
+                      "mmvId": "registration_year"
+                    }
+                  },
+                  "type": "mmv_input_field"
+                },
+                {
+                  "id": "enter_mmv_details_qna_2",
+                  "data": {
+                    "row": 3,
+                    "props": {
+                      "heading": "Does your car have an external CNG kit?",
+                      "is_visible": true,
+                      "payloadData": {
+                        "name": "is_external_cng_kit",
+                        "value": "#proposal.vehicle.is_external_cng_kit"
+                      },
+                      "sub_heading": "",
+                      "preSelectedValue": "#proposal.vehicle.is_external_cng_kit"
+                    }
+                  },
+                  "type": "qna",
+                  "children": [
+                    {
+                      "id": "qna3_select_button_1",
+                      "data": {
+                        "props": {
+                          "name": "is_external_cng_kit",
+                          "label": "Yes",
+                          "value": true,
+                          "styles": {},
+                          "is_visible": true
+                        }
+                      },
+                      "type": "select_button",
+                      "actions": {
+                        "on_click": [
+                          {}
+                        ]
+                      }
+                    },
+                    {
+                      "id": "qna3_select_button_2",
+                      "data": {
+                        "props": {
+                          "name": "is_external_cng_kit",
+                          "label": "No",
+                          "value": false,
+                          "styles": {},
+                          "is_visible": true
+                        }
+                      },
+                      "type": "select_button",
+                      "actions": {
+                        "on_click": [
+                          {}
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "enter_mmv_details_qna_1",
+                  "data": {
+                    "row": 3,
+                    "props": {
+                      "heading": "Is this is a commercial vehicle?",
+                      "is_visible": true,
+                      "payloadData": {
+                        "name": "is_commercial",
+                        "value": "#proposal.vehicle.is_commercial"
+                      },
+                      "sub-heading": "",
+                      "sub_heading": "Vehicle used as a taxi, to deliver goods etc.",
+                      "cueTextStyles": {
+                        "margin-top": "-12px"
+                      },
+                      "preSelectedValue": "#proposal.vehicle.is_commercial"
+                    }
+                  },
+                  "type": "qna",
+                  "children": [
+                    {
+                      "id": "qna2_select_button_1",
+                      "data": {
+                        "props": {
+                          "name": "is_commercial",
+                          "label": "Yes",
+                          "value": true,
+                          "styles": {},
+                          "is_visible": true
+                        }
+                      },
+                      "type": "select_button",
+                      "actions": {
+                        "on_click": [
+                          {}
+                        ]
+                      }
+                    },
+                    {
+                      "id": "qna2_select_button_2",
+                      "data": {
+                        "props": {
+                          "name": "is_commercial",
+                          "label": "No",
+                          "value": false,
+                          "styles": {},
+                          "is_visible": true
+                        }
+                      },
+                      "type": "select_button",
+                      "actions": {
+                        "on_click": [
+                          {}
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "edit_mmv_details_dotted_line",
+              "data": {
+                "props": {
+                  "pattern": "dotted",
+                  "is_visible": true
+                }
+              },
+              "type": "divider"
+            },
+            {
+              "id": "edit_mmv_details_pped_calendar",
+              "data": {
+                "row": 3,
+                "props": {
+                  "name": "previous_policy_expiry_date",
+                  "type": "date",
+                  "label": "Previous policy expiry date",
+                  "title": "Previous policy expiry date",
+                  "isDesktop": true,
+                  "is_visible": true,
+                  "payloadData": {
+                    "name": "previous_policy_expiry_date",
+                    "value": ""
+                  }
+                }
+              },
+              "type": "calendar",
+              "actions": {
+                "on_change": [
+                  {}
+                ]
+              },
+              "children": []
+            },
+            {
+              "id": "edit_mmv_details_prev_ncb_dropdown",
+              "data": {
+                "row": 4,
+                "props": {
+                  "id": "make",
+                  "label": "Previous policy NCB",
+                  "readonly": true,
+                  "placeholder": "Previous policy NCB",
+                  "prev_ncb": "#proposal.vehicle.previous_policy.previous_ncb",
+                  "note": "No Claim Bonus (NCB) is a reward you get for good driving, and not making a claim. It gives you a discount on your new policy premium.",
+                  "is_visible": true,
+                  "options": [
+                    {
+                      "label": "0% (No claims in the last 1 year)",
+                      "id": "0"
+                    },
+                    {
+                      "label": "20% (No claims in the last 2 years)",
+                      "id": "20"
+                    },
+                    {
+                      "label": "25% (No claims in the last 3 years)",
+                      "id":"25"
+                    },
+                    {
+                      "label": "35% (No claims in the last 4 years)",
+                      "id": "35"
+                    }
+                  ]
+                }
+              },
+              "type": "ncbInputField",
+              "actions": {
+                "on_change": [
+                  {}
+                ]
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "page_footer",
+      "data": {
+        "props": {
+          "text": "No Claim Bonus (NCB) is a reward you get for good driving, and not making a claim. It gives you a discount on your new policy premium.",
+          "label": "",
+          "style": {
+            "padding": "20px",
+            "maxWidth": "360px"
+          },
+          "is_visible": true,
+          "underlined_text": ""
+        },
+        "column": null
+      },
+      "type": "footer",
+      "children": [
+        {
+          "id": "footer_cta",
+          "data": {
+            "props": {
+              "label": "Update",
+              "styles": {
+                "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                "border_radius": "8px"
+              },
+              "is_visible": true
+            }
+          },
+          "type": "primary_button",
+          "actions": {
+            "on_click": [
+              {
+                "args": {
+                  "journey": "fresh_car",
+                  "expected_node": ""
+                },
+                "type": "fetch_config_redirect"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "meta_data": {
+    "link": "",
+    "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+    "description": ""
+  },
+  "current_node": "edit_mmv_details_node"
+}

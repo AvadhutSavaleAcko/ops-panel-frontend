@@ -1,0 +1,16 @@
+## code for main.yml file
+name: UAT-CI
+
+on:
+  push:
+    branches: [uat]
+jobs:
+  build:
+    name: Trigger Jenkins Job
+    runs-on: [self-hosted]
+    env:
+      JENKINS_JOB: <Jenkin Job URL>
+    steps:
+      - name: Trigger Job
+        run: |
+          curl --silent -X POST $JENKINS_JOB/buildWithParameters --header 'Authorization: Basic ${{ secrets.JENKINS_DEV_TOKEN }}'

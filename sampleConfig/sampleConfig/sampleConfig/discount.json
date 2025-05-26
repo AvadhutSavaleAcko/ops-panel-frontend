@@ -1,0 +1,365 @@
+{
+  "url": {
+    "base_path": "",
+    "host_name": "",
+    "query_params": {
+      "ekey": "#proposal.ekey"
+    }
+  },
+  "actions": {
+    "on_click": [
+      {}
+    ]
+  },
+  "children": [
+    {
+      "id": "plan_discount_node_header",
+      "data": {
+        "props": {
+          "label": "",
+          "is_visible": true,
+          "back_button": true
+        },
+        "column": 1
+      },
+      "type": "header"
+    },
+    {
+      "id": "plan_discount_node_two_column_layout",
+      "data": {
+        "props": {
+          "is_visible": true
+        },
+        "column": 2
+      },
+      "type": "flex_container",
+      "children": [
+        {
+          "id": "plan_discount_node_left_nav",
+          "data": {
+            "props": {
+              "steps": [
+                {
+                  "name": "Car details",
+                  "status": "pending"
+                },
+                {
+                  "name": "Personal details",
+                  "status": "pending"
+                },
+                {
+                  "name": "Select plan",
+                  "status": "pending"
+                },
+                {
+                  "name": "Discounts",
+                  "status": "progress"
+                },
+                {
+                  "name": "Insured value",
+                  "status": "pending"
+                },
+                {
+                  "name": "Additional covers",
+                  "status": "pending"
+                },
+                {
+                  "name": "Verify and review",
+                  "status": "pending"
+                }
+              ],
+              "style": {
+                "background": "#EFE9FB"
+              },
+              "is_visible": true
+            },
+            "column": 1
+          },
+          "type": "left_navigation"
+        },
+        {
+          "id": "plan_discount_node_data",
+          "data": {
+            "props": {
+              "style": {},
+              "is_visible": true
+            },
+            "column": 2
+          },
+          "type": "box_container",
+          "children": [
+            {
+              "id": "plan_discount_node_page_heading",
+              "data": {
+                "row": 1,
+                "props": {
+                  "text": "Exclusive discounts just for you",
+                  "style": {},
+                  "is_visible": true
+                }
+              },
+              "type": "page_heading"
+            },
+            {
+              "id": "plan_discount_node_page_suedo_card",
+              "data": {
+                "row": 2,
+                "props": {
+                  "style": {},
+                  "isApplied": true,
+                  "is_visible": "#getCoupons.psuedo_coupon.isPsuedo",
+                  "cardHeading": "A special discount applied!",
+                  "discountLogo": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-discount/bonus_gift.svg",
+                  "isSpecialDiscount": true,
+                  "appliedDiscountText": "You saved ${#getCoupons.psuedo_coupon.value}"
+                }
+              },
+              "type": "discount_card"
+            },
+            {
+              "id": "plan_discount_node_card_container",
+              "data": {
+                "row": 3,
+                "props": {
+                  "is_visible": true
+                },
+                "iterableKey": "getCoupons.coupons"
+              },
+              "type": "fragment",
+              "children": [
+                {
+                  "id": "discount_node_discount_card",
+                  "data": {
+                    "props": {
+                      "style": {},
+                      "tagText": "#code",
+                      "couponId": "#coupon_id",
+                      "isApplied": "#applied",
+                      "is_visible": true,
+                      "cardHeading": "#title",
+                      "headingText": "1 of 2 discounts",
+                      "discountDesc": "#description",
+                      "discountLogo": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-discount/coupon_offer.svg",
+                      "appliedImgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-discount/success_congrats_icon.svg",
+                      "applyDiscountLabel": "Apply discount",
+                      "appliedDiscountText": "Applied! You saved ₹${#coupon_value}",
+                      "removeDiscountBtnLabel": "Remove"
+                    }
+                  },
+                  "type": "discount_card",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "couponId": "#code",
+                          "is_hidden_coupon": false,
+                          "coupon_display_name": "#coupon_display_name"
+                        },
+                        "type": "handleApplyDiscount"
+                      },
+                      {
+                        "args": {
+                          "ids": [
+                            "plan_discount_node_premium_breakup",
+                            "footer_data"
+                          ]
+                        },
+                        "type": "updateMultipleWidgetProps"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "plan_discount_node_page_coupon_card",
+              "data": {
+                "row": 4,
+                "props": {
+                  "style": {},
+                  "isApplied": "#getCoupons.hidden_coupon.isApplied",
+                  "buttonText": "Apply",
+                  "couponDesc": "Apply your coupon code to get an instant discount",
+                  "is_visible": true,
+                  "cardHeading": "Have a coupon code?",
+                  "placeHolder": "Enter coupon code",
+                  "discountLogo": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-discount/coupon.svg",
+                  "appliedDiscountText": "Applied! You saved",
+                  "appliedDiscountValue": "#getCoupons.hidden_coupon.value",
+                  "removeDiscountBtnLabel": "Remove"
+                }
+              },
+              "type": "coupon_card",
+              "actions": {
+                "on_click": [
+                  {
+                    "args": {
+                      "is_hidden_coupon": true
+                    },
+                    "type": "handleApplyDiscount"
+                  },
+                  {
+                    "args": {
+                      "ids": [
+                        "plan_discount_node_premium_breakup",
+                        "footer_data"
+                      ]
+                    },
+                    "type": "updateMultipleWidgetProps"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "page_footer",
+      "data": {
+        "props": {
+          "text": "By proceeding, you agree to our",
+          "label": "",
+          "style": {
+            "maxWidth": "360px"
+          },
+          "is_visible": true,
+          "underlined_text": "Terms & Conditions"
+        },
+        "column": 3
+      },
+      "type": "footer",
+      "children": [
+        {
+          "id": "footer-container",
+          "data": {
+            "props": {
+              "styles": {
+                "alignItems": "center"
+              }
+            }
+          },
+          "type": "FlexBox",
+          "children": [
+            {
+              "id": "footer_data",
+              "data": {
+                "props": {
+                  "price": "#premiumBreakUp.netPremium",
+                  "styles": {},
+                  "gstText": "+ 18% GST",
+                  "modalText": "Premium break-up",
+                  "is_visible": true
+                }
+              },
+              "type": "FooterData",
+              "actions": {
+                "on_click": [
+                  {
+                    "args": {
+                      "ids": [
+                        "premium-breakup-modal"
+                      ]
+                    },
+                    "type": "submit_call"
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "id": "premium-breakup-modal",
+                  "data": {
+                    "props": {
+                      "is_visible": false,
+                      "modalHeading": "Premium break-up",
+                      "hideCloseButton": false,
+                      "modalHeadingStyles": {
+                        "font-size": "20px",
+                        "font-weight": 600
+                      },
+                      "disableOverlayClose": true
+                    }
+                  },
+                  "type": "bottomsheet",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "reverseIds": [
+                            "premium-breakup-modal"
+                          ]
+                        },
+                        "type": "submit_call"
+                      }
+                    ]
+                  },
+                  "children": [
+                    {
+                      "id": "plan_discount_node_premium_breakup",
+                      "data": {
+                        "row": 1,
+                        "props": {
+                          "gstText": "(Additional 18% GST will be applicable)",
+                          "ctaLabel": "OK",
+                          "is_visible": true,
+                          "netPremium": "#premiumBreakUp.netPremium",
+                          "premiumData": "#premiumBreakUp.premiumData"
+                        }
+                      },
+                      "type": "PremiunBreakup",
+                      "actions": {
+                        "on_click": [
+                          {
+                            "args": {
+                              "reverseIds": [
+                                "premium-breakup-modal"
+                              ]
+                            },
+                            "type": "submit_call"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "footer_cta",
+              "data": {
+                "props": {
+                  "label": "Continue",
+                  "styles": {
+                    "width": "148px",
+                    "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                    "border_radius": "8px"
+                  },
+                  "is_visible": true
+                }
+              },
+              "type": "primary_button",
+              "actions": {
+                "on_click": [
+                  {
+                    "args": {
+                      "reverseIds": [
+                        "premium-breakup-modal"
+                      ]
+                    },
+                    "type": "submit_call"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "meta_data": {
+    "link": "",
+    "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+    "description": ""
+  },
+  "current_node": "discount_node"
+}

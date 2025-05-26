@@ -1,0 +1,104 @@
+/* due to product requiremnt including global font family as euclid */
+* {
+  font-family: "Euclid Circular B", "system-ui", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+html{
+  -webkit-overflow-scrolling : touch !important;
+    overflow: auto !important;
+}
+
+body {
+  font-family: "Euclid Circular B", "system-ui", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 0;
+  -webkit-overflow-scrolling : touch !important;
+  overflow: auto !important;
+  margin: 0;
+}
+
+@supports (-webkit-touch-callout: none) {
+  input:focus {
+    scroll-behavior: smooth;
+  }
+}
+
+.fixed-wrapper {
+  position: fixed;
+  bottom: 0;
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  background: white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  text-transform: none;
+}
+
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  text-transform: none;
+}
+
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  text-transform: none;
+}
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  text-transform: none;
+}
+
+.freeze {
+  overflow: hidden;
+}
+
+.animate-appear {
+  z-index: 5 !important;
+}
+
+/* check _document for reference */
+html:not(.fonts-loaded) body {
+  visibility: hidden;
+}
+
+/* warning: expermental changes */
+button,
+.hide-touch-shadow {
+  box-shadow: none;
+  outline: none;
+}
+
+button:focus,
+button:active,
+.hide-touch-shadow:focus,
+.hide-touch-shadow:active {
+  box-shadow: none;
+  outline: none;
+}
+
+button,
+.hide-touch-shadow {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.no-scroll {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+}

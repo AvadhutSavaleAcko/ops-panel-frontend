@@ -1,0 +1,194 @@
+{
+    "url": {
+      "base_path": "",
+      "host_name": "",
+      "query_params": {
+        "ekey": "#proposal.ekey"
+      }
+    },
+    "actions": {
+      "on_load": [
+        {
+          "args": {
+            "payloadData": {
+              "is_new": "false",
+              "origin": "acko",
+              "product": "car"
+            },
+            "requestBody": {
+              "journey": "fresh_car"
+            }
+          },
+          "type": "setRequestPayload"
+        }
+      ]
+    },
+    "children": [
+      {
+        "id": "cng_confirmation_node_header",
+        "data": {
+          "props": {
+            "label": "",
+            "imgSrc": "",
+            "is_visible": true,
+            "back_button": true
+          },
+          "column": 1
+        },
+        "type": "header"
+      },
+      {
+        "id": "cng_confirmation_node_two_column_layout",
+        "data": {
+          "props": {
+            "bodyStyles": {
+              "display": "flex",
+              "align-items": "center",
+              "flex-direction": "column",
+              "justify-content": "center"
+            },
+            "is_visible": true,
+            "modalHeading": "",
+            "hideCloseButton": true,
+            "disableOverlayClose": true
+          },
+          "column": 2
+        },
+        "type": "bottomsheet",
+        "children": [
+          {
+            "id": "cng_confirmation_node_layout_image",
+            "data": {
+              "row": 1,
+              "props": {
+                "alt": "car details",
+                "width": 88,
+                "height": 88,
+                "imgSrc": "https://auto-buy-sdui-frontend.internal.ackodev.com/images/enter_car_details.svg",
+                "is_visible": true
+              }
+            },
+            "type": "image_container"
+          },
+          {
+            "id": "cng_confirmation_node_layout_heading",
+            "data": {
+              "row": 2,
+              "props": {
+                "text": "Just one quick question to ensure you get the right coverage",
+                "type": "",
+                "is_visible": true
+              }
+            },
+            "type": "typography"
+          },
+          {
+            "id": "cng_confirmation_node_qna_1",
+            "data": {
+              "row": 3,
+              "props": {
+                "styles": {},
+                "heading": "Does your car have an external CNG kit?",
+                "validate": {
+                  "regex": "",
+                  "requiredErrorMessage": "This is a mandatory field"
+                },
+                "is_visible": true,
+                "show_error": false,
+                "payloadData": {
+                  "name": "is_external_cng_kit",
+                  "value": ""
+                },
+                "sub_heading": null,
+                "headingStyles": {
+                  "text-align": "center"
+                }
+              }
+            },
+            "type": "qna",
+            "children": [
+              {
+                "id": "qna2_select_button_1",
+                "data": {
+                  "props": {
+                    "name": "is_external_cng_kit",
+                    "label": "Yes",
+                    "value": true,
+                    "styles": {
+                      "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                      "border_radius": "8px"
+                    },
+                    "is_visible": true
+                  }
+                },
+                "type": "select_button",
+                "actions": {
+                  "on_click": [
+                    {}
+                  ]
+                }
+              },
+              {
+                "id": "qna2_select_button_2",
+                "data": {
+                  "props": {
+                    "name": "is_external_cng_kit",
+                    "label": "No",
+                    "value": false,
+                    "styles": {
+                      "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                      "border_radius": "8px"
+                    },
+                    "is_visible": true
+                  }
+                },
+                "type": "select_button",
+                "actions": {
+                  "on_click": [
+                    {}
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "id": "cng_confirmation_node_bottomsheet_cta",
+            "data": {
+              "row": 4,
+              "props": {
+                "name": "",
+                "label": "Confirm",
+                "styles": {
+                  "width": "100% !important",
+                  "margin-top": "32px"
+                },
+                "is_visible": true
+              }
+            },
+            "type": "primary_button",
+            "actions": {
+              "on_click": [
+                {
+                  "args": {
+                    "showLottie": true,
+                    "required_fields": [
+                      "cng_confirmation_node_qna_1"
+                    ],
+                    "showBasicLoader": false,
+                    "lottieAnimationKey": "WeFoundYourCar"
+                  },
+                  "type": "validateAndFetchConfigAndRedirect"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "meta_data": {
+      "link": "",
+      "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+      "description": ""
+    },
+    "current_node": "cng_confirmation_node"
+  }

@@ -1,0 +1,1563 @@
+{
+  "url": {
+    "base_path": "fresh-car/plans-coverage",
+    "host_name": "",
+    "query_params": {
+      "ekey": "#proposal.ekey"
+    }
+  },
+  "actions": {
+    "on_load": [
+      {
+        "args": {
+          "payloadData": {
+            "is_new": "false",
+            "origin": "acko",
+            "product": "car"
+          },
+          "requestBody": {
+            "journey": "fresh_car"
+          }
+        },
+        "type": "setRequestPayload"
+      },
+      {
+        "args": {
+          "edata": "#segment",
+          "odata": {
+            "journey": "fresh_car"
+          },
+          "customData": {
+            "product": "car",
+            "view_name": "view_page_plan_page",
+            "view_type": "view_page",
+            "product_state": "Quote"
+          },
+          "event_name": "view"
+        },
+        "type": "dispatchCallEvents"
+      }
+    ]
+  },
+  "children": [
+    {
+      "id": "coverage_screen_header",
+      "data": {
+        "props": {
+          "label": "",
+          "imgSrc": "",
+          "is_visible": true,
+          "back_button": true
+        },
+        "column": 1
+      },
+      "type": "header",
+      "children": []
+    },
+    {
+      "id": "coverage_screen_two_column_layout",
+      "data": {
+        "props": {
+          "is_visible": true
+        },
+        "column": 2
+      },
+      "type": "flex_container",
+      "children": [
+        {
+          "id": "coverage_sceeen_left_nav",
+          "data": {
+            "props": {
+              "steps": [
+                {
+                  "name": "Car details",
+                  "status": "complete"
+                },
+                {
+                  "name": "Personal details",
+                  "status": "complete"
+                },
+                {
+                  "name": "Plan selection",
+                  "status": "progress"
+                },
+                {
+                  "name": "Review",
+                  "status": "pending"
+                }
+              ],
+              "style": {
+                "background": "#EFE9FB"
+              },
+              "is_visible": true
+            },
+            "column": 1
+          },
+          "type": "left_navigation"
+        },
+        {
+          "id": "coverage_screen_data",
+          "data": {
+            "props": {
+              "styles": {
+                "gap": "24px"
+              },
+              "is_visible": true
+            },
+            "column": 2
+          },
+          "type": "layout",
+          "children": [
+            {
+              "id": "gradient_header",
+              "data": {
+                "props": {
+                  "is_visible": true
+                }
+              },
+              "type": "gradient_header"
+            },
+            {
+              "id": "coverage_header_section",
+              "data": {
+                "row": 1,
+                "props": {
+                  "styles": {
+                    "gap": "0.5rem",
+                    "width": "100%",
+                    "display": "flex",
+                    "flex-direction": "column"
+                  },
+                  "is_visible": true
+                }
+              },
+              "type": "box_container",
+              "children": [
+                {
+                  "id": "coverage_screen_heading",
+                  "data": {
+                    "row": 1,
+                    "props": {
+                      "text": "Select a plan",
+                      "style": {},
+                      "is_visible": true
+                    }
+                  },
+                  "type": "page_heading"
+                },
+                {
+                  "id": "idv_section",
+                  "data": {
+                    "row": 2,
+                    "props": {
+                      "styles": {
+                        "width": "100%",
+                        "display": "none"
+                      },
+                      "idvData": "#plans.idv",
+                      "mStyles": {
+                        "display": "block"
+                      },
+                      "is_visible": [
+                        {
+                          "event": {
+                            "type": "show_idv_edit_section"
+                          },
+                          "conditions": {
+                            "all": [
+                              {
+                                "fact": "plans",
+                                "path": "$.selected_plan.id",
+                                "value": "car_tp",
+                                "operator": "notEqual"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "displayText": "Insured Value (IDV) -"
+                    }
+                  },
+                  "type": "idv_section",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "ids": "idv_edit_modal"
+                        },
+                        "type": "submit_call"
+                      },
+                      {
+                        "args": {
+                          "edata": {
+                            "product": "car",
+                            "action_name": "tap_btn_edit_idv",
+                            "action_type": "tap_btn"
+                          },
+                          "odata": {
+                            "journey": "fresh_car"
+                          },
+                          "event_name": "action"
+                        },
+                        "type": "triggerEvent"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "idvContainerWithslider",
+                  "data": {
+                    "row": 3,
+                    "props": {
+                      "idv": "#plans.idv",
+                      "styles": {
+                        "slider": {
+                          "track": {
+                            "boxShadow": "0px 1px 2px 0px #B191ED inset, 0px -1px 2px 0px #5920C5 inset",
+                            "background": "var(--Purple-P300, #7C47E1)",
+                            "border-radius": "16px"
+                          },
+                          "handle": {
+                            "border": "1px solid #5920C5",
+                            "boxShadow": "0px 2px 4px 0px #B191ED inset",
+                            "background": "#5920C5"
+                          }
+                        },
+                        "inputBox": {
+                          "input": {
+                            "color": "#040222",
+                            "width": "34px",
+                            "fontSize": "16px",
+                            "fontWeight": 500,
+                            "lineHeight": "24px"
+                          },
+                          "errorMessage": {
+                            "position": "static"
+                          },
+                          "currencySymbol": {
+                            "color": "#040222",
+                            "fontWeight": 500,
+                            "lineHeight": "24px"
+                          },
+                          "inputContainer": {
+                            "padding": "12px",
+                            "boxSizing": "border-box",
+                            "marginBottom": "12px"
+                          }
+                        }
+                      },
+                      "infoCTA": "What’s this?",
+                      "mStyles": {
+                        "display": "none"
+                      },
+                      "is_visible": true,
+                      "cardHeading": "Your car’s insured value (IDV)"
+                    }
+                  },
+                  "type": "idv_container_with_slider",
+                  "actions": {
+                    "on_info_click": [
+                      {
+                        "args": {
+                          "ids": "idv_info_modal"
+                        },
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "plans_container",
+              "data": {
+                "row": 2,
+                "props": {
+                  "styles": {
+                    "gap": "1rem",
+                    "width": "100%",
+                    "display": "flex",
+                    "flex-direction": "column"
+                  },
+                  "is_visible": true
+                },
+                "iterableKey": "plans.covers"
+              },
+              "type": "box_container",
+              "actions": {
+                "on_load": [
+                  {
+                    "args": {
+                      "globalData": {
+                        "price": "#plans.selected_plan.display_premium",
+                        "plan_id": "#plans.selected_plan.id",
+                        "category": "#plans.selected_plan.category",
+                        "coupon_length": "#getCoupons.coupons.length"
+                      }
+                    },
+                    "type": "setGlobalData"
+                  },
+                  {
+                    "args": {
+                      "payloadData": {
+                        "plan_id": "#plans.selected_plan.id",
+                        "display_name_sdui": "#plans.selected_plan.review_plan_name"
+                      }
+                    },
+                    "type": "setPayloadData"
+                  },
+                  {
+                    "args": {
+                      "cases": {
+                        "car_tp": [
+                          {
+                            "args": {
+                              "component_id": "footer_cta",
+                              "update_props": {
+                                "label": "Select plan"
+                              }
+                            },
+                            "type": "updateProps"
+                          },
+                          {
+                            "args": {
+                              "component_id": "page_footer",
+                              "update_props": {
+                                "disclaimer": {
+                                  "showDisclaimer": true,
+                                  "disclaimerImage": {
+                                    "alt": "icon",
+                                    "width": 16,
+                                    "height": 16,
+                                    "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/discount_congrats.svg",
+                                    "is_visible": true
+                                  },
+                                  "disclaimerContent": "<span style='font-weight:500; color:rgba(4, 2, 34, 1)'>Up next:</span> Additional covers just for you!"
+                                }
+                              }
+                            },
+                            "type": "updateProps"
+                          },
+                          {
+                            "args": {
+                              "component_id": "footer_data",
+                              "update_props": {
+                                "price": "#plans.selected_plan.display_premium",
+                                "gstText": "+ 18% GST",
+                                "preText": null
+                              }
+                            },
+                            "type": "updateProps"
+                          }
+                        ],
+                        "fallback": [
+                          {
+                            "args": {
+                              "cases": {
+                                "2": [
+                                  {
+                                    "args": {
+                                      "component_id": "footer_cta",
+                                      "update_props": {
+                                        "label": "Explore plan"
+                                      }
+                                    },
+                                    "type": "updateProps"
+                                  },
+                                  {
+                                    "args": {
+                                      "component_id": "page_footer",
+                                      "update_props": {
+                                        "disclaimer": {
+                                          "showDisclaimer": true,
+                                          "disclaimerImage": {
+                                            "alt": "icon",
+                                            "width": 16,
+                                            "height": 16,
+                                            "imgSrc": "",
+                                            "is_visible": false
+                                          },
+                                          "disclaimerContent": "<span style='font-weight:500; color:rgba(4, 2, 34, 1)'>Up next:</span> Plan options and additional covers just for you!"
+                                        }
+                                      }
+                                    },
+                                    "type": "updateProps"
+                                  },
+                                  {
+                                    "args": {
+                                      "component_id": "footer_data",
+                                      "update_props": {
+                                        "price": "#plans.selected_plan.display_premium",
+                                        "gstText": "",
+                                        "preText": "Plan starts from"
+                                      }
+                                    },
+                                    "type": "updateProps"
+                                  }
+                                ],
+                                "fallback": [
+                                  {
+                                    "args": {
+                                      "component_id": "footer_cta",
+                                      "update_props": {
+                                        "label": "Select plan"
+                                      }
+                                    },
+                                    "type": "updateProps"
+                                  },
+                                  {
+                                    "args": {
+                                      "component_id": "footer_data",
+                                      "update_props": {
+                                        "price": "#plans.selected_plan.display_premium",
+                                        "gstText": "+ 18% GST",
+                                        "preText": null
+                                      }
+                                    },
+                                    "type": "updateProps"
+                                  },
+                                  {
+                                    "args": {
+                                      "cases": {
+                                        "0": [
+                                          {
+                                            "args": {
+                                              "component_id": "page_footer",
+                                              "update_props": {
+                                                "disclaimer": {
+                                                  "showDisclaimer": true,
+                                                  "disclaimerImage": {
+                                                    "alt": "icon",
+                                                    "width": 16,
+                                                    "height": 16,
+                                                    "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/discount_congrats.svg",
+                                                    "is_visible": true
+                                                  },
+                                                  "disclaimerContent": "<span style='font-weight:500; color:rgba(4, 2, 34, 1)'>Up next:</span> Additional covers just for you!"
+                                                }
+                                              }
+                                            },
+                                            "type": "updateProps"
+                                          }
+                                        ],
+                                        "fallback": [
+                                          {
+                                            "args": {
+                                              "component_id": "page_footer",
+                                              "update_props": {
+                                                "disclaimer": {
+                                                  "showDisclaimer": true,
+                                                  "disclaimerImage": {
+                                                    "alt": "icon",
+                                                    "width": 16,
+                                                    "height": 16,
+                                                    "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/discount_congrats.svg",
+                                                    "is_visible": true
+                                                  },
+                                                  "disclaimerContent": "<span style='font-weight:500; color:rgba(4, 2, 34, 1)'>Up next:</span> Discount and additional covers just for you!"
+                                                }
+                                              }
+                                            },
+                                            "type": "updateProps"
+                                          }
+                                        ]
+                                      },
+                                      "value": "#getCoupons.coupons.length"
+                                    },
+                                    "type": "checkValueAndCall"
+                                  }
+                                ]
+                              },
+                              "value": "#plans.selected_plan.variant_length"
+                            },
+                            "type": "checkValueAndCall"
+                          }
+                        ]
+                      },
+                      "value": "#plans.selected_plan.id"
+                    },
+                    "type": "checkValueAndCall"
+                  },
+                  {
+                    "args": {
+                      "cases": {
+                        "true": [
+                          {}
+                        ],
+                        "fallback": [
+                          {
+                            "args": {
+                              "cases": {
+                                "true": [
+                                  {
+                                    "args": {
+                                      "ids": "ncb_input_modal"
+                                    },
+                                    "type": "submit_call"
+                                  }
+                                ],
+                                "fallback": [
+                                  {}
+                                ]
+                              },
+                              "value": "#ncbSlab.showNcbModal"
+                            },
+                            "type": "checkValueAndCall"
+                          }
+                        ]
+                      },
+                      "base_func": {
+                        "args": {
+                          "key": "ncb_input_modal"
+                        },
+                        "type": "getFromSessionStorage"
+                      }
+                    },
+                    "type": "conditionalCall"
+                  },
+                  {
+                    "args": {
+                      "cases": {
+                        "true": [
+                          {
+                            "args": {
+                              "reverseIds": "ncb_update_modal"
+                            },
+                            "type": "submit_call"
+                          }
+                        ],
+                        "fallback": [
+                          {
+                            "args": {
+                              "cases": {
+                                "car_tp": [
+                                  {
+                                    "args": {
+                                      "reverseIds": "ncb_update_modal"
+                                    },
+                                    "type": "submit_call"
+                                  }
+                                ],
+                                "fallback": [
+                                  {
+                                    "args": {
+                                      "cases": {
+                                        "fallback": [
+                                          {
+                                            "args": {
+                                              "cases": {
+                                                "true": [
+                                                  {
+                                                    "args": {
+                                                      "ids": "ncb_update_modal"
+                                                    },
+                                                    "type": "submit_call"
+                                                  }
+                                                ],
+                                                "fallback": [
+                                                  {}
+                                                ]
+                                              },
+                                              "base_func": {
+                                                "args": {
+                                                  "key": "ncb_input_modal"
+                                                },
+                                                "type": "getFromSessionStorage"
+                                              }
+                                            },
+                                            "type": "conditionalCall"
+                                          }
+                                        ],
+                                        "third_party": [
+                                          {
+                                            "args": {
+                                              "reverseIds": "ncb_update_modal"
+                                            },
+                                            "type": "submit_call"
+                                          }
+                                        ]
+                                      },
+                                      "value": "#proposal.vehicle.previous_policy.policy_type"
+                                    },
+                                    "type": "checkValueAndCall"
+                                  }
+                                ]
+                              },
+                              "value": "#plans.selected_plan.id"
+                            },
+                            "type": "checkValueAndCall"
+                          }
+                        ]
+                      },
+                      "base_func": {
+                        "args": {
+                          "key": "ncb_update_modal"
+                        },
+                        "type": "getFromSessionStorage"
+                      }
+                    },
+                    "type": "conditionalCall"
+                  },
+                  {
+                    "args": {
+                      "event_name": "view_item_list_car",
+                      "event_propperties": {}
+                    },
+                    "type": "triggerFirebaseEvent"
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "id": "${#id}_plan",
+                  "data": {
+                    "props": {
+                      "badge": {
+                        "text": "#primary_tag.text",
+                        "type": "#primary_tag.type",
+                        "image": "#primary_tag.image",
+                        "is_visible": true
+                      },
+                      "planId": "#id",
+                      "premium": "#display_premium",
+                      "category": "#category",
+                      "planName": "#display_name",
+                      "isSelected": "#is_selected",
+                      "is_visible": true,
+                      "description": "#description",
+                      "showLearnMore": true,
+                      "pseudoDiscount": "#psuedo_coupon_name",
+                      "strikeOffPrice": "#strike_through_premium",
+                      "variantsLength": "#variant_length"
+                    }
+                  },
+                  "type": "plan_card",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "edata": {
+                            "plan_id": "#id",
+                            "product": "car",
+                            "action_name": "tap_btn_plan_selected",
+                            "action_type": "tap_btn"
+                          },
+                          "odata": {
+                            "journey": "fresh_car"
+                          },
+                          "event_name": "action"
+                        },
+                        "type": "triggerEvent"
+                      },
+                      {
+                        "args": {
+                          "globalData": {
+                            "price": "#display_premium",
+                            "plan_id": "#id",
+                            "category": "#category"
+                          }
+                        },
+                        "type": "setGlobalData"
+                      },
+                      {
+                        "args": {
+                          "payloadData": {
+                            "plan_id": "#id",
+                            "display_name_sdui": "#review_plan_name"
+                          }
+                        },
+                        "type": "setPayloadData"
+                      },
+                      {
+                        "args": {
+                          "component_id": "footer_data",
+                          "update_props": {
+                            "price": "#display_premium"
+                          }
+                        },
+                        "type": "updateProps"
+                      },
+                      {
+                        "args": {
+                          "cases": {
+                            "car_tp": [
+                              {
+                                "args": {
+                                  "component_id": "idv_section",
+                                  "update_props": {
+                                    "is_visible": false
+                                  }
+                                },
+                                "type": "updateProps"
+                              }
+                            ],
+                            "fallback": [
+                              {
+                                "args": {
+                                  "component_id": "idv_section",
+                                  "update_props": {
+                                    "is_visible": true
+                                  }
+                                },
+                                "type": "updateProps"
+                              }
+                            ]
+                          },
+                          "value": "#id"
+                        },
+                        "type": "checkValueAndCall"
+                      },
+                      {
+                        "args": {
+                          "cases": {
+                            "car_tp": [
+                              {
+                                "args": {
+                                  "component_id": "footer_cta",
+                                  "update_props": {
+                                    "label": "Select plan"
+                                  }
+                                },
+                                "type": "updateProps"
+                              },
+                              {
+                                "args": {
+                                  "component_id": "page_footer",
+                                  "update_props": {
+                                    "disclaimer": {
+                                      "showDisclaimer": true,
+                                      "disclaimerImage": {
+                                        "alt": "icon",
+                                        "width": 16,
+                                        "height": 16,
+                                        "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/discount_congrats.svg",
+                                        "is_visible": true
+                                      },
+                                      "disclaimerContent": "<span style='font-weight:500; color:rgba(4, 2, 34, 1)'>Up next:</span> Additional covers just for you!"
+                                    }
+                                  }
+                                },
+                                "type": "updateProps"
+                              },
+                              {
+                                "args": {
+                                  "component_id": "footer_data",
+                                  "update_props": {
+                                    "price": "#display_premium",
+                                    "gstText": "+ 18% GST",
+                                    "preText": null
+                                  }
+                                },
+                                "type": "updateProps"
+                              }
+                            ],
+                            "fallback": [
+                              {
+                                "args": {
+                                  "cases": {
+                                    "2": [
+                                      {
+                                        "args": {
+                                          "component_id": "footer_cta",
+                                          "update_props": {
+                                            "label": "Explore plan"
+                                          }
+                                        },
+                                        "type": "updateProps"
+                                      },
+                                      {
+                                        "args": {
+                                          "component_id": "page_footer",
+                                          "update_props": {
+                                            "disclaimer": {
+                                              "showDisclaimer": true,
+                                              "disclaimerImage": {
+                                                "alt": "icon",
+                                                "width": 16,
+                                                "height": 16,
+                                                "imgSrc": "",
+                                                "is_visible": false
+                                              },
+                                              "disclaimerContent": "<span style='font-weight:500; color:rgba(4, 2, 34, 1)'>Up next:</span> Plan options and additional covers just for you!"
+                                            }
+                                          }
+                                        },
+                                        "type": "updateProps"
+                                      },
+                                      {
+                                        "args": {
+                                          "component_id": "footer_data",
+                                          "update_props": {
+                                            "price": "#display_premium",
+                                            "gstText": "",
+                                            "preText": "Plan starting from"
+                                          }
+                                        },
+                                        "type": "updateProps"
+                                      }
+                                    ],
+                                    "fallback": [
+                                      {
+                                        "args": {
+                                          "component_id": "footer_data",
+                                          "update_props": {
+                                            "price": "#display_premium",
+                                            "gstText": "+ 18% GST",
+                                            "preText": ""
+                                          }
+                                        },
+                                        "type": "updateProps"
+                                      },
+                                      {
+                                        "args": {
+                                          "component_id": "footer_cta",
+                                          "update_props": {
+                                            "label": "Select plan"
+                                          }
+                                        },
+                                        "type": "updateProps"
+                                      },
+                                      {
+                                        "args": {
+                                          "key": "coupon_length",
+                                          "cases": {
+                                            "0": [
+                                              {
+                                                "args": {
+                                                  "component_id": "page_footer",
+                                                  "update_props": {
+                                                    "disclaimer": {
+                                                      "showDisclaimer": true,
+                                                      "disclaimerImage": {
+                                                        "alt": "icon",
+                                                        "width": 16,
+                                                        "height": 16,
+                                                        "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/discount_congrats.svg",
+                                                        "is_visible": true
+                                                      },
+                                                      "disclaimerContent": "<span style='font-weight:500; color:rgba(4, 2, 34, 1)'>Up next:</span> Additional covers just for you!"
+                                                    }
+                                                  }
+                                                },
+                                                "type": "updateProps"
+                                              }
+                                            ],
+                                            "fallback": [
+                                              {
+                                                "args": {
+                                                  "component_id": "page_footer",
+                                                  "update_props": {
+                                                    "disclaimer": {
+                                                      "showDisclaimer": true,
+                                                      "disclaimerImage": {
+                                                        "alt": "icon",
+                                                        "width": 16,
+                                                        "height": 16,
+                                                        "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/discount_congrats.svg",
+                                                        "is_visible": true
+                                                      },
+                                                      "disclaimerContent": "<span style='font-weight:500; color:rgba(4, 2, 34, 1)'>Up next:</span> Discount and additional covers just for you!"
+                                                    }
+                                                  }
+                                                },
+                                                "type": "updateProps"
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        "type": "checkGlobalDataAndCall"
+                                      }
+                                    ]
+                                  },
+                                  "value": "#variant_length"
+                                },
+                                "type": "checkValueAndCall"
+                              }
+                            ]
+                          },
+                          "value": "#id"
+                        },
+                        "type": "checkValueAndCall"
+                      }
+                    ],
+                    "learn_more_on_click": [
+                      {
+                        "args": {
+                          "ids": "${#id}_covered_not_covered_addons_modal"
+                        },
+                        "type": "submit_call"
+                      },
+                      {
+                        "args": {
+                          "edata": {
+                            "product": "car",
+                            "action_name": "tap_btn_learn_more",
+                            "action_type": "tap_btn",
+                            "plan_card_name": "#category"
+                          },
+                          "odata": {
+                            "journey": "fresh_car"
+                          },
+                          "event_name": "action"
+                        },
+                        "type": "triggerEvent"
+                      }
+                    ]
+                  },
+                  "children": [
+                    {
+                      "id": "${#id}_benefits_section_divider",
+                      "data": {
+                        "props": {
+                          "is_visible": [
+                            {
+                              "event": {
+                                "type": "show_benefits_section_divider"
+                              },
+                              "conditions": {
+                                "all": [
+                                  {
+                                    "fact": "benefits",
+                                    "path": "$.length",
+                                    "value": 0,
+                                    "operator": "notEqual"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "type": "section_divider"
+                    },
+                    {
+                      "id": "${#id}_benefits_container",
+                      "data": {
+                        "props": {
+                          "benefits": "#benefits",
+                          "is_visible": [
+                            {
+                              "event": {
+                                "type": "show_benefits_section"
+                              },
+                              "conditions": {
+                                "all": [
+                                  {
+                                    "fact": "benefits",
+                                    "path": "$.length",
+                                    "value": 0,
+                                    "operator": "notEqual"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "type": "benefits",
+                      "actions": {
+                        "on_click": [
+                          {
+                            "args": {
+                              "requestBody": {
+                                "expected_node": "#garage_redirection"
+                              },
+                              "shouldRedirect": true,
+                              "showCustomLottie": false,
+                              "showCustomBasicLoader": true
+                            },
+                            "type": "fetch_config_redirect"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "${#id}_covered_not_covered_addons_modal",
+                      "data": {
+                        "props": {
+                          "addonId": "#id",
+                          "heading": "${#base_plan_name}",
+                          "options": [
+                            {
+                              "optionId": "zd_details",
+                              "isSelected": true,
+                              "optionName": "Zero Depreciation"
+                            },
+                            {
+                              "optionId": "covered",
+                              "isSelected": true,
+                              "optionName": "Covered",
+                              "iterableData": "#covered"
+                            },
+                            {
+                              "optionId": "not_covered",
+                              "isSelected": false,
+                              "optionName": "Not covered",
+                              "iterableData": "#not_covered"
+                            },
+                            {
+                              "optionId": "addons",
+                              "bannerData": {
+                                "text": "Opt for additional covers in the next steps to enhance your car protection",
+                                "image": {
+                                  "alt": "banner-icon",
+                                  "width": 27,
+                                  "height": 27,
+                                  "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/FAQ_Question_doubt.svg",
+                                  "is_visible": true
+                                },
+                                "is_visible": true
+                              },
+                              "isSelected": false,
+                              "optionName": "Available upgrades",
+                              "iterableData": "#addons"
+                            }
+                          ],
+                          "is_visible": false,
+                          "coverageDetails": "${#coverage_details}"
+                        }
+                      },
+                      "type": "covered_not_covered_addons",
+                      "actions": {
+                        "on_click": [
+                          {
+                            "args": {
+                              "reverseIds": "${#id}_covered_not_covered_addons_modal"
+                            },
+                            "type": "submit_call"
+                          }
+                        ],
+                        "on_close": [
+                          {
+                            "args": {
+                              "reverseIds": "${#id}_covered_not_covered_addons_modal"
+                            },
+                            "type": "submit_call"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "${#id}_plan_banner",
+                      "data": {
+                        "row": 3,
+                        "props": {
+                          "text": "#banner.text",
+                          "image": {
+                            "alt": "icon",
+                            "width": 24,
+                            "height": 24,
+                            "imgSrc": "#banner.image",
+                            "is_visible": true
+                          },
+                          "styles": {
+                            "margin-top": "20px",
+                            "align-items": "center"
+                          },
+                          "is_visible": true
+                        }
+                      },
+                      "type": "banner"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idv_edit_modal",
+      "data": {
+        "props": {
+          "style": {},
+          "cueText": "IDV is the maximum amount ACKO will pay you if your car is stolen or damaged beyond repair",
+          "is_visible": false,
+          "modalHeading": "Your car's Insured Value (IDV)",
+          "cueTextStyles": {
+            "lineHeight": "20px"
+          },
+          "dwebChildrenStyles": {
+            "margin-top": "24px"
+          }
+        }
+      },
+      "type": "bottomsheet",
+      "actions": {
+        "on_load": [
+          {
+            "args": {
+              "edata": {
+                "product": "car",
+                "view_name": "view_modal_edit_idv_modal",
+                "view_type": "view_modal"
+              },
+              "odata": {
+                "journey": "fresh_car"
+              },
+              "event_name": "view"
+            },
+            "type": "triggerEvent"
+          }
+        ],
+        "on_click": [
+          {
+            "args": {
+              "reverseIds": "idv_edit_modal"
+            },
+            "type": "submit_call"
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": "idv_message",
+          "data": {
+            "props": {
+              "text": "For your ${#proposal.vehicle.vehicle_age}-year-old ${#proposal.vehicle.make_name} ${#proposal.vehicle.model_name}, we advise selecting an <strong>IDV of ${#plans.recommended_idv_display_value} lakh or more </strong>for maximum protection",
+              "image": {
+                "alt": "icon",
+                "width": 24,
+                "height": 24,
+                "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/FAQ_Question_doubt.svg",
+                "is_visible": true
+              },
+              "styles": {
+                "align-items": "center",
+                "margin-bottom": "2rem"
+              },
+              "is_visible": true
+            }
+          },
+          "type": "banner"
+        },
+        {
+          "id": "idv_container",
+          "data": {
+            "props": {
+              "idv": "#plans.idv",
+              "is_visible": true
+            }
+          },
+          "type": "idv_container"
+        },
+        {
+          "id": "idv_bottomsheet_cta",
+          "data": {
+            "props": {
+              "label": "Update my IDV",
+              "styles": {
+                "min-width": "100%",
+                "margin-top": "48px"
+              },
+              "is_visible": true
+            }
+          },
+          "type": "primary_button",
+          "actions": {
+            "on_click": [
+              {
+                "args": {
+                  "key": "idv_error",
+                  "cases": {
+                    "true": [
+                      {}
+                    ],
+                    "fallback": [
+                      {
+                        "args": {
+                          "edata": {
+                            "product": "car",
+                            "action_name": "tap_btn_idv_edited",
+                            "action_type": "tap_btn",
+                            "initial_idv": "#plans.idv.selected",
+                            "recommended_idv": "#plans.idv.recommended"
+                          },
+                          "odata": {
+                            "journey": "fresh_car"
+                          },
+                          "event_name": "action"
+                        },
+                        "type": "triggerEvent"
+                      },
+                      {
+                        "args": {
+                          "requestBody": {
+                            "expected_node": "plan_selection_node"
+                          },
+                          "showCustomLottie": false,
+                          "showCustomBasicLoader": true
+                        },
+                        "type": "fetch_config_redirect"
+                      },
+                      {
+                        "args": {
+                          "reverseIds": "idv_edit_modal"
+                        },
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                },
+                "type": "checkGlobalDataAndCall"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "idv_info_modal",
+      "data": {
+        "props": {
+          "style": {},
+          "cueText": "IDV is the maximum amount ACKO will pay you if your car is stolen or damaged beyond repair",
+          "is_visible": false,
+          "modalHeading": "Your car's Insured Value (IDV)",
+          "cueTextStyles": {
+            "lineHeight": "20px"
+          },
+          "dwebChildrenStyles": {
+            "margin-top": "24px"
+          }
+        }
+      },
+      "type": "bottomsheet",
+      "actions": {
+        "on_load": [
+          {
+            "args": {
+              "edata": {
+                "product": "car",
+                "view_name": "view_modal_idv_info_modal",
+                "view_type": "view_modal"
+              },
+              "odata": {
+                "journey": "fresh_car"
+              },
+              "event_name": "view"
+            },
+            "type": "triggerEvent"
+          }
+        ],
+        "on_click": [
+          {
+            "args": {
+              "reverseIds": "idv_info_modal"
+            },
+            "type": "submit_call"
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": "idv_message",
+          "data": {
+            "props": {
+              "text": "For your ${#proposal.vehicle.vehicle_age}-year-old ${#proposal.vehicle.make_name} ${#proposal.vehicle.model_name}, we advise selecting an <strong>IDV of ${#plans.recommended_idv_display_value} lakh or more </strong>for maximum protection",
+              "image": {
+                "alt": "icon",
+                "width": 24,
+                "height": 24,
+                "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/FAQ_Question_doubt.svg",
+                "is_visible": true
+              },
+              "styles": {
+                "align-items": "center",
+                "margin-bottom": "2rem"
+              },
+              "is_visible": true
+            }
+          },
+          "type": "banner"
+        },
+        {
+          "id": "idv_bottomsheet_cta",
+          "data": {
+            "props": {
+              "label": "Okay",
+              "styles": {
+                "min-width": "100%",
+                "margin-top": "48px"
+              },
+              "is_visible": true
+            }
+          },
+          "type": "primary_button",
+          "actions": {
+            "on_click": [
+              {
+                "args": {
+                  "reverseIds": "idv__modal"
+                },
+                "type": "submit_call"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ncb_update_modal",
+      "data": {
+        "props": {
+          "newNcb": "#proposal.policy_attributes.ncb",
+          "content": {
+            "ncbMax": {
+              "image": {
+                "alt": "icon",
+                "width": 66,
+                "height": 64,
+                "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-discount/bonus_gift.svg"
+              },
+              "title": "Maximum NCB unlocked!",
+              "ncbContent": "You've earned the maximum <b>No Claim Bonus (NCB)</b> of ${#proposal.policy_attributes.ncb}%. We’ve applied the discount to your premium."
+            },
+            "ncbProtect": {
+              "image": {
+                "alt": "icon",
+                "width": 66,
+                "height": 64,
+                "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-discount/bonus_gift.svg"
+              },
+              "title": "Smart choice last year!",
+              "ncbContent": "As you bought <b>No Claim Bonus (NCB) Protect add-on</b> with your policy last year, your NCB <b>hasn't reset to zero</b> even though you claimed. We will apply ${#proposal.policy_attributes.ncb}% NCB discount on your renewal premium."
+            },
+            "ncbIncrease": {
+              "image": {
+                "alt": "icon",
+                "width": 66,
+                "height": 64,
+                "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-discount/bonus_gift.svg"
+              },
+              "title": "Here's your reward for staying <span style='color:rgb(124, 71, 225)'>claim-free</span>",
+              "ncbContent": "We've applied a ${#proposal.policy_attributes.ncb}% discount to your new plan since your NCB has increased from <span style='color:rgba(15, 164, 87, 1)'>${#proposal.vehicle.previous_policy.previous_ncb}% to ${#proposal.policy_attributes.ncb}%</span>"
+            },
+            "ncbResetPolicyExpired": {
+              "image": {
+                "alt": "icon",
+                "width": 66,
+                "height": 64,
+                "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/thumbs_up.svg"
+              },
+              "title": "About your No Claim Bonus (NCB)",
+              "ncbContent": "Since it's <b>been 90 days that your policy expired</b>, your No Claim Bonus (NCB) has reset to ${#proposal.policy_attributes.ncb}%. This is not just ACKO's policy; all insurers offer ${#proposal.policy_attributes.ncb}% NCB if a policy is renewed 90 days after policy expiry."
+            },
+            "ncbResetPreviousPolicyClaim": {
+              "image": {
+                "alt": "icon",
+                "width": 66,
+                "height": 64,
+                "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/thumbs_up.svg"
+              },
+              "title": "About your No Claim Bonus (NCB)",
+              "ncbContent": "Since <b>you claimed at least once</b> in your last policy, your No Claim Bonus (NCB) has reset to ${#proposal.policy_attributes.ncb}%. This is not just ACKO's policy; all insurers offer ${#proposal.policy_attributes.ncb}% NCB in the year following a claim."
+            }
+          },
+          "is_visible": false,
+          "previousNcb": "#proposal.vehicle.previous_policy.previous_ncb",
+          "policyStatus": "#proposal.vehicle.previous_policy.policy_status"
+        }
+      },
+      "type": "ncb_update_modal",
+      "actions": {
+        "on_load": [
+          {
+            "args": {
+              "edata": {
+                "product": "car",
+                "view_name": "view_modal_ncb_acknowledgement_modal",
+                "view_type": "view_modal"
+              },
+              "odata": {
+                "journey": "fresh_car"
+              },
+              "event_name": "view"
+            },
+            "type": "triggerEvent"
+          }
+        ],
+        "on_modal_close": [
+          {
+            "args": {
+              "reverseIds": "ncb_update_modal"
+            },
+            "type": "submit_call"
+          },
+          {
+            "args": {
+              "key": "ncb_update_modal",
+              "value": "true"
+            },
+            "type": "setInSessionStorage"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ncb_input_modal",
+      "data": {
+        "props": {
+          "ctaText": "Continue",
+          "options": "#ncbSlab.ncbArray",
+          "is_visible": false,
+          "errorMessage": "A response is required",
+          "isUpdateModal": true,
+          "hideCloseButton": "true",
+          "disableOverlayClose": true
+        }
+      },
+      "type": "ncb_bottomsheet",
+      "actions": {
+        "on_load": [
+          {
+            "args": {
+              "edata": {
+                "product": "car",
+                "view_name": "view_modal_select_previous_ncb_modal",
+                "view_type": "view_modal"
+              },
+              "odata": {
+                "journey": "fresh_car"
+              },
+              "event_name": "view"
+            },
+            "type": "triggerEvent"
+          }
+        ],
+        "on_click": [
+          {
+            "args": {
+              "requestBody": {
+                "expected_node": "plan_selection_node"
+              },
+              "showCustomLottie": false,
+              "showCustomBasicLoader": true
+            },
+            "type": "fetch_config_redirect"
+          },
+          {
+            "args": {
+              "key": "ncb_input_modal",
+              "value": "true"
+            },
+            "type": "setInSessionStorage"
+          }
+        ],
+        "on_close": [
+          {
+            "args": {
+              "reverseIds": "ncb_input_modal"
+            },
+            "type": "submit_call"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page_footer",
+      "data": {
+        "props": {
+          "text": "By proceeding, you agree to our",
+          "label": "",
+          "style": {
+            "maxWidth": "360px"
+          },
+          "disclaimer": {
+            "showDisclaimer": true,
+            "disclaimerImage": {
+              "alt": "icon",
+              "width": 16,
+              "height": 16,
+              "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/discount_congrats.svg",
+              "is_visible": true
+            },
+            "disclaimerContent": "<span style='font-weight:500; color:rgba(4, 2, 34, 1)'>Up next:</span> Additional covers just for you!"
+          },
+          "is_visible": true,
+          "underlined_text": "Terms & Conditions"
+        },
+        "column": 3
+      },
+      "type": "footer",
+      "children": [
+        {
+          "id": "footer-container",
+          "data": {
+            "props": {
+              "styles": {
+                "width": "100%",
+                "display": "flex",
+                "alignItems": "center",
+                "box-sizing": "border-box",
+                "justify-content": "space-between"
+              },
+              "is_visible": true
+            }
+          },
+          "type": "box_container",
+          "children": [
+            {
+              "id": "footer_data",
+              "data": {
+                "props": {
+                  "price": "#plans.selected_plan.display_premium",
+                  "styles": {},
+                  "gstText": "+ 18% GST",
+                  "is_visible": true
+                }
+              },
+              "type": "footer_data"
+            },
+            {
+              "id": "footer_cta",
+              "data": {
+                "props": {
+                  "label": "Select a plan",
+                  "styles": {
+                    "min-width": "max-content",
+                    "border-radius": "8px"
+                  },
+                  "is_visible": true,
+                  "dWrapperStyles": {
+                    "width": "auto"
+                  }
+                }
+              },
+              "type": "primary_button",
+              "actions": {
+                "on_click": [
+                  {
+                    "args": {
+                      "edata": {
+                        "product": "car",
+                        "action_name": "tap_btn_plan_screen_cta",
+                        "action_type": "tap_btn"
+                      },
+                      "odata": {
+                        "journey": "fresh_car"
+                      },
+                      "event_name": "action"
+                    },
+                    "type": "triggerEvent"
+                  },
+                  {
+                    "args": {},
+                    "type": "fetch_config_redirect"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "meta_data": {
+    "link": "",
+    "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+    "description": ""
+  },
+  "current_node": "plan_selection_node"
+}

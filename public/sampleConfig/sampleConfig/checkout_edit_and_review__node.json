@@ -1,0 +1,1379 @@
+{
+  "url": {
+    "base_path": "fresh-car/checkout-review",
+    "host_name": "",
+    "query_params": {
+      "ekey": "#proposal.ekey"
+    }
+  },
+  "actions": {
+    "on_load": [
+      {
+        "args": {
+          "payloadData": {
+            "is_new": "false",
+            "origin": "acko",
+            "product": "car"
+          },
+          "requestBody": {
+            "journey": "fresh_car"
+          }
+        },
+        "type": "setRequestPayload"
+      },
+      {
+        "args": {
+          "edata": "#segment",
+          "odata": {
+            "journey": "fresh_car"
+          },
+          "customData": {
+            "product": "car",
+            "view_name": "view_page_review_screen",
+            "view_type": "view_page",
+            "product_state": "Payment"
+          },
+          "event_name": "view"
+        },
+        "type": "dispatchCallEvents"
+      }
+    ]
+  },
+  "children": [
+    {
+      "id": "review_page_header",
+      "data": {
+        "props": {
+          "label": "review_header",
+          "imgSrc": "",
+          "is_visible": true,
+          "back_button": true
+        },
+        "column": 1
+      },
+      "type": "header",
+      "children": []
+    },
+    {
+      "id": "review_two_column_layout",
+      "data": {
+        "props": {
+          "is_visible": true
+        },
+        "column": 2
+      },
+      "type": "flex_container",
+      "children": [
+        {
+          "id": "review_left_nav",
+          "data": {
+            "props": {
+              "steps": [
+                {
+                  "name": "Car details",
+                  "status": "complete"
+                },
+                {
+                  "name": "Personal details",
+                  "status": "complete"
+                },
+                {
+                  "name": "Plan selection",
+                  "status": "complete"
+                },
+                {
+                  "name": "Review",
+                  "status": "pending"
+                }
+              ],
+              "style": {
+                "background": null
+              },
+              "is_visible": true
+            },
+            "column": 1
+          },
+          "type": "left_navigation"
+        },
+        {
+          "id": "review_data",
+          "data": {
+            "props": {
+              "styles": {
+                "gap": "1rem"
+              },
+              "is_visible": true
+            },
+            "column": 2
+          },
+          "type": "layout",
+          "children": [
+            {
+              "id": "gradient_header",
+              "data": {
+                "props": {
+                  "is_visible": true
+                }
+              },
+              "type": "gradient_header"
+            },
+            {
+              "id": "review_page_heading",
+              "data": {
+                "row": 1,
+                "props": {
+                  "text": "Take a moment to review your policy details",
+                  "style": {},
+                  "is_visible": true
+                }
+              },
+              "type": "page_heading"
+            },
+            {
+              "id": "review_page_coupon_card",
+              "data": {
+                "row": 1,
+                "props": {
+                  "error": "#updateCoupons.errorMessage",
+                  "cardTitle": "Apply coupon",
+                  "is_visible": [
+                    {
+                      "event": {
+                        "type": "show_coupon_modal"
+                      },
+                      "conditions": {
+                        "all": [
+                          {
+                            "fact": "proposal",
+                            "path": "$.policy_attributes.plan.plan_id",
+                            "value": "car_tp",
+                            "operator": "notEqual"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "placeholder": "Enter coupon code",
+                  "applyCtaText": "Apply",
+                  "viewMoreText": "View more coupons",
+                  "appliedCoupon": "#proposal.coupon",
+                  "hidden_coupon": "#getCoupons.hidden_coupon",
+                  "removeCtaText": "Remove",
+                  "eligibleCoupons": "#getCoupons.coupons",
+                  "appliedCouponCode": "#proposal.coupon.code",
+                  "isHiddenCouponApplied": "#getCoupons.hidden_coupon.isapplied",
+                  "showCouponAppliedModal": "#updateCoupons.show_coupon_applied_modal"
+                },
+                "style": {}
+              },
+              "type": "multiple_copuons_card",
+              "actions": {
+                "onCouponUpdate": [
+                  {
+                    "args": {
+                      "requestBody": {
+                        "expected_node": "checkout_edit_and_review__node"
+                      },
+                      "shouldRedirect": true,
+                      "showCustomLottie": false,
+                      "customAnimationText": "DONT_SHOW_CUSTOM_TEXT",
+                      "showCustomBasicLoader": true
+                    },
+                    "type": "fetch_config_redirect"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "review_page_pricing_breakup",
+              "data": {
+                "row": 1,
+                "props": {
+                  "cardTitle": "Coverage pricing breakup",
+                  "is_visible": true
+                },
+                "style": {}
+              },
+              "type": "coverage_pricing_breakup",
+              "children": [
+                {
+                  "id": "review_page_pricing_breakup_idv",
+                  "data": {
+                    "props": {
+                      "idvText": "IDV",
+                      "idvValue": "#coverage_pricing_breakup.idv_details.value",
+                      "arrowUpSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/chevron_up.svg",
+                      "is_visible": true,
+                      "idvFullForm": "Insured Declared Value",
+                      "arrowDownSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/chevron_down.svg",
+                      "modifityText": "Modify",
+                      "idvDescription": "idvDescriptionidvDescriptionidvDescriptionidvDescriptionidvDescriptionidvDescriptionidvDescription"
+                    }
+                  },
+                  "type": "modify_idv",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "ids": "idv_edit_modal"
+                        },
+                        "type": "submit_call"
+                      },
+                      {
+                        "args": {
+                          "edata": {
+                            "product": "car",
+                            "action_name": "tap_btn_edit_idv",
+                            "action_type": "tap_btn"
+                          },
+                          "odata": {
+                            "journey": "fresh_car"
+                          },
+                          "event_name": "action"
+                        },
+                        "type": "triggerEvent"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "review_page_selected_plan",
+                  "data": {
+                    "props": {
+                      "value": "#coverage_pricing_breakup.plan_details.value",
+                      "planType": "#coverage_pricing_breakup.plan_details.planType",
+                      "arrowUpSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/chevron_up.svg",
+                      "is_visible": true,
+                      "description": "#coverage_pricing_breakup.plan_details.description",
+                      "planHeading": "Plan",
+                      "premiumData": "#coverage_pricing_breakup.plan_details.premium_data",
+                      "variantName": "(Safe driver)",
+                      "arrowDownSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/chevron_down.svg",
+                      "planPriceText": "Plan price",
+                      "totalPremiumData": "#coverage_pricing_breakup.plan_details.total_premium_data"
+                    }
+                  },
+                  "type": "review_selected_plan"
+                },
+                {
+                  "id": "review_page_additional_covers",
+                  "data": {
+                    "props": {
+                      "arrowUpSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/chevron_up.svg",
+                      "is_visible": true,
+                      "cardHeading": "Additional covers",
+                      "arrowDownSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/chevron_down.svg",
+                      "addtionalCovers": "#coverage_pricing_breakup.additonal_covers",
+                      "additional_covers_text": "Additional covers"
+                    }
+                  },
+                  "type": "review_additional_covers",
+                  "actions": {
+                    "on_addon_update": [
+                      {
+                        "args": {
+                          "id": "#id"
+                        },
+                        "type": "handleReviewAddonUpdate"
+                      },
+                      {
+                        "args": {
+                          "ids": [
+                            "review_page_selected_plan",
+                            "review_page_pricing_breakup_total"
+                          ]
+                        },
+                        "type": "updateMultipleWidgetProps"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "review_page_pricing_breakup_total",
+                  "data": {
+                    "props": {
+                      "totalText": "Total",
+                      "is_visible": true,
+                      "grossPremium": "#coverage_pricing_breakup.premium.total_value_including_gst",
+                      "premiumDetails": "#coverage_pricing_breakup.premium.total_premium"
+                    }
+                  },
+                  "type": "review_price_breakup"
+                }
+              ]
+            },
+            {
+              "id": "vehicle_details_card",
+              "data": {
+                "row": 1,
+                "props": {
+                  "text": "Take a moment to review your policy details",
+                  "style": {},
+                  "allowEdit": true,
+                  "cardTitle": "Car and personal details",
+                  "ownerData": [
+                    {
+                      "field": "Name",
+                      "value": "#proposal.user.name",
+                      "fullWidth": true
+                    },
+                    {
+                      "field": "E-mail",
+                      "value": "#proposal.user.email",
+                      "fullWidth": true
+                    },
+                    {
+                      "field": "Phone number",
+                      "value": "#proposal.user.phone"
+                    },
+                    {
+                      "field": "Pin code",
+                      "value": "#proposal.user.pincode"
+                    },
+                    {
+                      "field": "GST number",
+                      "value": "#proposal.user.gst_info.number"
+                    },
+                    {
+                      "field": "Nominee",
+                      "value": "#proposal.user.nominee.name"
+                    }
+                  ],
+                  "is_visible": true,
+                  "headingIcon": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/car.svg",
+                  "showDetails": false,
+                  "vehicleData": [
+                    {
+                      "field": "Car number",
+                      "value": "#proposal.vehicle.registration_number"
+                    },
+                    {
+                      "field": "Type",
+                      "value": "#proposal.vehicle.vehicle_type"
+                    },
+                    {
+                      "make": "#proposal.vehicle.make_name",
+                      "type": "makemodel",
+                      "field": "Make and model",
+                      "model": "#proposal.vehicle.model_name",
+                      "value": ""
+                    },
+                    {
+                      "field": "Variant",
+                      "value": "#proposal.vehicle.variant_name"
+                    },
+                    {
+                      "field": "Fuel type",
+                      "value": "#proposal.vehicle.fuel_type"
+                    },
+                    {
+                      "field": "CNG kit installed?",
+                      "value": "#proposal.vehicle.is_external_cng_kit"
+                    },
+                    {
+                      "field": "Make year",
+                      "value": "#proposal.vehicle.registration_year"
+                    }
+                  ],
+                  "editDetailsIcon": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/edit.svg",
+                  "editDetailsText": "Edit details",
+                  "minifiedDetails": [
+                    {
+                      "type": "text",
+                      "value": "#proposal.vehicle.registration_number",
+                      "styles": {
+                        "fontWeight": 500
+                      }
+                    },
+                    {
+                      "type": "bulletMinifiedDetails",
+                      "value": [
+                        {
+                          "make": "#proposal.vehicle.make_name",
+                          "type": "makemodel",
+                          "model": "#proposal.vehicle.model_name",
+                          "value": "",
+                          "styles": {
+                            "fontWeight": 400
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "value": "#proposal.vehicle.fuel_type",
+                          "styles": {
+                            "fontWeight": 400
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "value": "#proposal.vehicle.registration_year",
+                          "styles": {
+                            "fontWeight": 400
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "minifiedLinkText": "See less",
+                  "editDetailsAction": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "requestBody": {
+                            "expected_node": "review_edit_node"
+                          },
+                          "shouldRedirect": true,
+                          "showCustomLottie": false,
+                          "customAnimationText": "DONT_SHOW_CUSTOM_TEXT",
+                          "showCustomBasicLoader": true
+                        },
+                        "type": "fetch_config_redirect"
+                      },
+                      {
+                        "args": {
+                          "edata": {
+                            "action_name": "tap_btn_vehicle_owner_details_updated",
+                            "action_type": "tap_btn"
+                          },
+                          "odata": {
+                            "journey": "fresh_car"
+                          },
+                          "event_name": "action"
+                        },
+                        "type": "triggerEvent"
+                      }
+                    ]
+                  },
+                  "expandableLinkText": "See more"
+                }
+              },
+              "type": "vehicle_details"
+            },
+            {
+              "id": "policy_details",
+              "data": {
+                "row": 1,
+                "props": {
+                  "id": "policy-details",
+                  "text": "Take a moment to review your policy details",
+                  "style": {},
+                  "allowEdit": false,
+                  "cardTitle": "Policy start date",
+                  "is_visible": true,
+                  "headingIcon": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/calender.svg",
+                  "showDetails": false,
+                  "editDetailsIcon": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/car.svg",
+                  "editDetailsText": "",
+                  "minifiedDetails": [
+                    {
+                      "type": "text",
+                      "value": "#policyStartDate.policy_start_date",
+                      "styles": {
+                        "color": null,
+                        "fontWeight": 400
+                      }
+                    },
+                    {
+                      "type": "hyperlink_text",
+                      "value": "How inspection works ",
+                      "styles": {
+                        "color": null,
+                        "fontWeight": 400
+                      },
+                      "actions": {
+                        "on_click": [
+                          {
+                            "args": {
+                              "ids": "car_inspection_modal"
+                            },
+                            "type": "submit_call"
+                          }
+                        ]
+                      },
+                      "is_visible": "#proposal.context.pi_required"
+                    }
+                  ],
+                  "minifiedLinkText": "",
+                  "expandableLinkText": ""
+                }
+              },
+              "type": "expandable_card"
+            },
+            {
+              "id": "car_inspection_modal",
+              "data": {
+                "props": {
+                  "bodyMargin": "0",
+                  "bodyStyles": {
+                    "display": "flex",
+                    "align-items": "center",
+                    "flex-direction": "column",
+                    "justify-content": "center"
+                  },
+                  "is_visible": false,
+                  "modalHeading": "",
+                  "hideCloseButton": false,
+                  "dwebChildrenStyles": {},
+                  "disableOverlayClose": true
+                },
+                "column": 2
+              },
+              "type": "bottomsheet",
+              "actions": {
+                "on_load": [
+                  {
+                    "args": {
+                      "edata": {
+                        "view_name": "view_inspection_modal",
+                        "view_type": "view_modal"
+                      },
+                      "odata": {
+                        "journey": "fresh_car"
+                      },
+                      "event_name": "view"
+                    },
+                    "type": "triggerEvent"
+                  }
+                ],
+                "on_click": [
+                  {
+                    "args": {
+                      "reverseIds": "car_inspection_modal"
+                    },
+                    "type": "submit_call"
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "id": "car_inspection_image",
+                  "data": {
+                    "row": 1,
+                    "props": {
+                      "alt": "car details",
+                      "width": 80,
+                      "height": 80,
+                      "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/car_survey_completed.svg",
+                      "is_visible": true,
+                      "showParentWrapper": true
+                    }
+                  },
+                  "type": "image_container"
+                },
+                {
+                  "id": "inspection_layout_heading",
+                  "data": {
+                    "row": 2,
+                    "props": {
+                      "text": "How does <span style='color: rgb(124, 71, 225)'> car inspection </span>work?",
+                      "type": "",
+                      "styles": {
+                        "margin-top": "16px",
+                        "text-align": "left",
+                        "margin-bottom": "20px"
+                      },
+                      "isSelfPi": "#isSelfPi.data",
+                      "is_visible": true,
+                      "selfPiText": "How does <span style='color: rgb(124, 71, 225)'>self-car inspection </span>work?"
+                    }
+                  },
+                  "type": "typography"
+                },
+                {
+                  "id": "covered_not_covered_addons_section_inspection",
+                  "data": {
+                    "row": 4,
+                    "props": {
+                      "options": [
+                        {
+                          "text": "You can pick from up to 10 slots in the next 3 days starting 8 AM to 6 PM",
+                          "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/select_date_calendar.svg"
+                        },
+                        {
+                          "text": "Our team will inspect your car at your chosen location, and issue the policy within 24 hours if inspection is approved",
+                          "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/car_survey.svg"
+                        },
+                        {
+                          "text": "If we’re unable to insure your car after the inspection, you’ll get an instant refund.",
+                          "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/refund_icon.svg"
+                        }
+                      ],
+                      "isSelfPi": "#isSelfPi.data",
+                      "is_visible": true,
+                      "selfPiOptions": [
+                        {
+                          "text": "Take 5 photos and record a video of your car. It’ll only take ~4 minutes.",
+                          "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/pi_img.svg"
+                        },
+                        {
+                          "text": "Our team will verify the photos, and once approved, your policy will be issued.",
+                          "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/documents.svg"
+                        },
+                        {
+                          "text": "If we’re unable to insure your car after the inspection, you’ll get an instant refund.",
+                          "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/refund_icon.svg"
+                        }
+                      ]
+                    }
+                  },
+                  "type": "inspection_items"
+                },
+                {
+                  "id": "inspection_bottomsheet_cta",
+                  "data": {
+                    "row": 4,
+                    "props": {
+                      "name": "",
+                      "label": "OK",
+                      "styles": {
+                        "min-width": "100%",
+                        "margin-top": "32px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "primary_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "reverseIds": "car_inspection_modal"
+                        },
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "premium_increased_modal",
+              "data": {
+                "props": {
+                  "bodyMargin": "0",
+                  "bodyStyles": {
+                    "display": "flex",
+                    "align-items": "center",
+                    "flex-direction": "column",
+                    "justify-content": "center"
+                  },
+                  "is_visible": [
+                    {
+                      "event": {
+                        "type": "show_premium_increased_modal"
+                      },
+                      "conditions": {
+                        "all": [
+                          {
+                            "fact": "premiumDiff",
+                            "path": "$.delta",
+                            "value": 0,
+                            "operator": "lessThan"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "modalHeading": "",
+                  "hideCloseButton": true,
+                  "dwebChildrenStyles": {
+                    "display": "flex",
+                    "align-items": "center",
+                    "flex-direction": "column"
+                  },
+                  "disableOverlayClose": true
+                },
+                "column": 2
+              },
+              "type": "bottomsheet",
+              "actions": {
+                "on_load": [
+                  {
+                    "args": {
+                      "edata": {
+                        "state": "price_reduced",
+                        "view_name": "view_page_price_change_modal",
+                        "view_type": "view_modal"
+                      },
+                      "odata": {
+                        "journey": "fresh_car"
+                      },
+                      "event_name": "view"
+                    },
+                    "type": "triggerEvent"
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "id": "car_inspection_image",
+                  "data": {
+                    "row": 1,
+                    "props": {
+                      "alt": "car details",
+                      "width": 80,
+                      "height": 80,
+                      "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-discount/coupon_offer.svg",
+                      "is_visible": false,
+                      "showParentWrapper": true
+                    }
+                  },
+                  "type": "image_container"
+                },
+                {
+                  "id": "inspection_layout_heading",
+                  "data": {
+                    "row": 2,
+                    "props": {
+                      "text": "You qualify for a good driver discount!",
+                      "type": "",
+                      "styles": {
+                        "margin-top": "16px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "typography"
+                },
+                {
+                  "id": "covered_not_covered_addons_section",
+                  "data": {
+                    "row": 4,
+                    "props": {
+                      "options": [
+                        {
+                          "text": "Old premium",
+                          "value": "#premiumDiff.oldPremium"
+                        },
+                        {
+                          "text": "Updated premium",
+                          "value": "#premiumDiff.newPremium"
+                        }
+                      ],
+                      "is_visible": true,
+                      "newPremium": "#premiumDiff.newPremium",
+                      "oldPremium": "#premiumDiff.oldPremium",
+                      "reduced_amount_text": "Your policy premium has reduced by {bold}₹240{/bold}"
+                    }
+                  },
+                  "type": "premium_reduction_banner"
+                },
+                {
+                  "id": "premium_reduced_modal_cta",
+                  "data": {
+                    "row": 4,
+                    "props": {
+                      "name": "",
+                      "label": "OK",
+                      "styles": {
+                        "min-width": "100%",
+                        "margin-top": "32px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "primary_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "reverseIds": "premium_increased_modal"
+                        },
+                        "type": "submit_call"
+                      },
+                      {
+                        "args": {
+                          "edata": {
+                            "action_name": "tap_btn_price_change_modal_cta",
+                            "action_type": "tap_btn"
+                          },
+                          "odata": {
+                            "journey": "fresh_car"
+                          },
+                          "event_name": "action"
+                        },
+                        "type": "triggerEvent"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "premium_reduced_modal",
+              "data": {
+                "props": {
+                  "bodyMargin": "0",
+                  "bodyStyles": {
+                    "display": "flex",
+                    "align-items": "center",
+                    "flex-direction": "column",
+                    "justify-content": "center"
+                  },
+                  "is_visible": [
+                    {
+                      "event": {
+                        "type": "show_premium_decreased_modal"
+                      },
+                      "conditions": {
+                        "all": [
+                          {
+                            "fact": "premiumDiff",
+                            "path": "$.delta",
+                            "value": 0,
+                            "operator": "greaterThan"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "modalHeading": "",
+                  "hideCloseButton": true,
+                  "dwebChildrenStyles": {
+                    "display": "flex",
+                    "align-items": "center",
+                    "flex-direction": "column"
+                  },
+                  "disableOverlayClose": true
+                },
+                "column": 2
+              },
+              "type": "bottomsheet",
+              "actions": {
+                "on_load": [
+                  {
+                    "args": {
+                      "edata": {
+                        "state": "price_increase",
+                        "view_name": "view_page_price_change_modal",
+                        "view_type": "view_modal"
+                      },
+                      "odata": {
+                        "journey": "fresh_car"
+                      },
+                      "event_name": "view"
+                    },
+                    "type": "triggerEvent"
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "id": "car_inspection_image",
+                  "data": {
+                    "row": 1,
+                    "props": {
+                      "alt": "car details",
+                      "width": 80,
+                      "height": 80,
+                      "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/insured_money.svg",
+                      "is_visible": true,
+                      "showParentWrapper": true
+                    }
+                  },
+                  "type": "image_container"
+                },
+                {
+                  "id": "inspection_layout_heading",
+                  "data": {
+                    "row": 2,
+                    "props": {
+                      "text": "Your premium has increased",
+                      "type": "",
+                      "styles": {
+                        "margin-top": "16px",
+                        "margin-bottom": "12px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "typography"
+                },
+                {
+                  "id": "inspection_layout_heading_mini",
+                  "data": {
+                    "row": 2,
+                    "props": {
+                      "text": "Your policy premium has increased by <span style='color: rgb(216, 61, 55)'>₹ ${#premiumDiff.delta}.</span> Renew today to avoid any further increase in premium.",
+                      "type": "",
+                      "styles": {
+                        "color": "rgb(91, 86, 117)",
+                        "fontSize": "16px",
+                        "margin-top": "0",
+                        "font-weight": "400",
+                        "line-height": "24px",
+                        "margin-bottom": "0"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "typography"
+                },
+                {
+                  "id": "premium_increased_modal_cta",
+                  "data": {
+                    "row": 4,
+                    "props": {
+                      "name": "",
+                      "label": "OK",
+                      "styles": {
+                        "min-width": "100%",
+                        "margin-top": "32px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "primary_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "reverseIds": "premium_reduced_modal"
+                        },
+                        "type": "submit_call"
+                      },
+                      {
+                        "args": {
+                          "edata": {
+                            "action_name": "tap_btn_price_change_modal_cta",
+                            "action_type": "tap_btn"
+                          },
+                          "odata": {
+                            "journey": "fresh_car"
+                          },
+                          "event_name": "action"
+                        },
+                        "type": "triggerEvent"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "change_plan",
+                  "data": {
+                    "row": 4,
+                    "props": {
+                      "text": "Change plan",
+                      "type": "PRIMARY",
+                      "styles": {
+                        "width": "100%",
+                        "margin": "20px 0 0 0",
+                        "display": "flex",
+                        "font-size": "14px",
+                        "font-weight": "500",
+                        "line-height": "20px",
+                        "justify-content": "center"
+                      },
+                      "dwebStyles": {
+                        "font-size": "16px",
+                        "line-height": "24px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "hyperlink_text",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "reverseIds": "premium_reduced_modal"
+                        },
+                        "type": "submit_call"
+                      },
+                      {
+                        "args": {
+                          "requestBody": {
+                            "expected_node": "plan_selection_node"
+                          },
+                          "shouldRedirect": true,
+                          "showCustomLottie": false,
+                          "customAnimationText": "DONT_SHOW_CUSTOM_TEXT",
+                          "showCustomBasicLoader": true
+                        },
+                        "type": "fetch_config_redirect"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "non_serviceable_modal",
+              "data": {
+                "props": {
+                  "bodyMargin": "0",
+                  "bodyStyles": {
+                    "display": "flex",
+                    "align-items": "center",
+                    "flex-direction": "column",
+                    "justify-content": "center"
+                  },
+                  "is_visible": [
+                    {
+                      "event": {
+                        "type": "show_plan_ineligible_modal"
+                      },
+                      "conditions": {
+                        "all": [
+                          {
+                            "fact": "currentPlanEligible",
+                            "path": "$.isCurrentPlanEligible",
+                            "value": false,
+                            "operator": "equal"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "modalHeading": "",
+                  "hideCloseButton": true,
+                  "dwebChildrenStyles": {
+                    "display": "flex",
+                    "align-items": "center",
+                    "flex-direction": "column"
+                  },
+                  "disableOverlayClose": true
+                },
+                "column": 2
+              },
+              "type": "bottomsheet",
+              "children": [
+                {
+                  "id": "car_inspection_image",
+                  "data": {
+                    "row": 1,
+                    "props": {
+                      "alt": "car details",
+                      "width": 80,
+                      "height": 80,
+                      "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-review/error_alert.svg",
+                      "is_visible": false,
+                      "showParentWrapper": true
+                    }
+                  },
+                  "type": "image_container"
+                },
+                {
+                  "id": "inspection_layout_heading",
+                  "data": {
+                    "row": 2,
+                    "props": {
+                      "text": "Unfortunately, we are unable to cover you at this time",
+                      "type": "",
+                      "styles": {
+                        "margin-top": "16px",
+                        "margin-bottom": "12px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "typography"
+                },
+                {
+                  "id": "non_serviceable_layout_heading_sample",
+                  "data": {
+                    "row": 2,
+                    "props": {
+                      "text": "We are working hard to expand our coverage and will let you know when we’re ready",
+                      "type": "",
+                      "styles": {
+                        "color": "rgb(91, 86, 117)",
+                        "fontSize": "16px",
+                        "margin-top": "0",
+                        "font-weight": "400",
+                        "line-height": "24px",
+                        "margin-bottom": "0"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "typography"
+                },
+                {
+                  "id": "non_serviceable_modal_cta_text",
+                  "data": {
+                    "row": 4,
+                    "props": {
+                      "name": "",
+                      "label": "OK",
+                      "styles": {
+                        "min-width": "100%",
+                        "margin-top": "32px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "primary_button",
+                  "actions": {
+                    "on_click": [
+                      {
+                        "args": {
+                          "reverseIds": "non_serviceable_modal"
+                        },
+                        "type": "goToHomePage"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "page_footer",
+      "data": {
+        "props": {
+          "text": "By proceeding, you agree to our",
+          "label": "",
+          "style": {
+            "maxWidth": "360px"
+          },
+          "is_visible": true,
+          "underlined_text": "Terms & Conditions"
+        },
+        "column": 3
+      },
+      "type": "footer",
+      "children": [
+        {
+          "id": "footer-container",
+          "data": {
+            "props": {
+              "styles": {
+                "width": "100%",
+                "display": "flex",
+                "alignItems": "center",
+                "justify-content": "space-between"
+              },
+              "is_visible": true
+            }
+          },
+          "type": "box_container",
+          "children": [
+            {
+              "id": "footer_data",
+              "data": {
+                "props": {
+                  "price": "#premium.price.display_gross_premium",
+                  "styles": {},
+                  "gstText": "(Incl. GST)",
+                  "is_visible": true,
+                  "tooltipText": "Your premium includes 18% GST <span>(₹${#premium.price.display_gst_amount})</span>"
+                }
+              },
+              "type": "footer_data",
+              "actions": {
+                "on_click": [
+                  {
+                    "args": {
+                      "edata": {
+                        "product": "car",
+                        "action_name": "tap_btn_see_premium_breakup",
+                        "action_type": "tap_btn"
+                      },
+                      "odata": {
+                        "journey": "fresh_car"
+                      },
+                      "event_name": "action"
+                    },
+                    "type": "triggerEvent"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "footer_cta",
+              "data": {
+                "props": {
+                  "label": "Pay now",
+                  "styles": {
+                    "width": "max-content",
+                    "border_radius": "8px"
+                  },
+                  "is_visible": true,
+                  "wrapperStyles": {
+                    "width": "auto"
+                  }
+                }
+              },
+              "type": "primary_button",
+              "actions": {
+                "on_click": [
+                  {
+                    "args": {
+                      "edata": {
+                        "product": "car",
+                        "action_name": "tap_btn_pay_now",
+                        "action_type": "tap_btn"
+                      },
+                      "odata": {
+                        "journey": "fresh_car"
+                      },
+                      "event_name": "action"
+                    },
+                    "type": "triggerEvent"
+                  },
+                  {
+                    "args": {
+                      "data": {
+                        "plan_id": "#reviewPlan.planId",
+                        "plan_name": "#reviewPlan.coveragePlan",
+                        "display_name_sdui": "#reviewPlan.coveragePlan"
+                      }
+                    },
+                    "type": "redirect_to_payment_gateway"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idv_edit_modal",
+      "data": {
+        "props": {
+          "style": {},
+          "cueText": "IDV is the maximum amount ACKO will pay you if your car is stolen or damaged beyond repair",
+          "is_visible": false,
+          "modalHeading": "Your car's Insured Value (IDVV)",
+          "cueTextStyles": {
+            "lineHeight": "20px"
+          }
+        }
+      },
+      "type": "bottomsheet",
+      "actions": {
+        "on_load": [
+          {
+            "args": {
+              "edata": {
+                "product": "car",
+                "view_name": "view_modal_edit_idv_modal",
+                "view_type": "view_modal"
+              },
+              "odata": {
+                "journey": "fresh_car"
+              },
+              "event_name": "view"
+            },
+            "type": "triggerEvent"
+          }
+        ],
+        "on_click": [
+          {
+            "args": {
+              "reverseIds": "idv_edit_modal"
+            },
+            "type": "submit_call"
+          }
+        ]
+      },
+      "children": [
+        {
+          "id": "idv_message",
+          "data": {
+            "props": {
+              "text": "For your ${#proposal.vehicle.vehicle_age}-year-old ${#proposal.vehicle.make_name} ${#proposal.vehicle.model_name}, we advise selecting an <strong>IDV of ${#plans.recommended_idv_display_value} lakh or more </strong>for maximum protection",
+              "image": {
+                "alt": "icon",
+                "width": 24,
+                "height": 24,
+                "imgSrc": "https://storefront-consumer-assets.s3.ap-south-1.amazonaws.com/static/sdui-common/FAQ_Question_doubt.svg",
+                "is_visible": true
+              },
+              "styles": {
+                "align-items": "center",
+                "margin-bottom": "2rem"
+              },
+              "is_visible": true
+            }
+          },
+          "type": "banner"
+        },
+        {
+          "id": "idv_container",
+          "data": {
+            "props": {
+              "idv": "#plans.idv",
+              "is_visible": true
+            }
+          },
+          "type": "idv_container"
+        },
+        {
+          "id": "idv_bottomsheet_cta",
+          "data": {
+            "props": {
+              "label": "Update my IDV",
+              "styles": {
+                "min-width": "100%",
+                "margin-top": "48px"
+              },
+              "is_visible": true
+            }
+          },
+          "type": "primary_button",
+          "actions": {
+            "on_click": [
+              {
+                "args": {
+                  "key": "idv_error",
+                  "cases": {
+                    "true": [
+                      {}
+                    ],
+                    "fallback": [
+                      {
+                        "args": {
+                          "edata": {
+                            "product": "car",
+                            "action_name": "tap_btn_idv_edited",
+                            "action_type": "tap_btn",
+                            "initial_idv": "#plans.idv.selected",
+                            "recommended_idv": "#plans.idv.recommended"
+                          },
+                          "odata": {
+                            "journey": "fresh_car"
+                          },
+                          "event_name": "action"
+                        },
+                        "type": "triggerEvent"
+                      },
+                      {
+                        "args": {
+                          "requestBody": {
+                            "expected_node": "checkout_edit_and_review__node"
+                          },
+                          "showCustomLottie": false,
+                          "showCustomBasicLoader": true
+                        },
+                        "type": "fetch_config_redirect"
+                      },
+                      {
+                        "args": {
+                          "reverseIds": "idv_edit_modal"
+                        },
+                        "type": "submit_call"
+                      }
+                    ]
+                  }
+                },
+                "type": "checkGlobalDataAndCall"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "meta_data": {
+    "link": "",
+    "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+    "description": ""
+  },
+  "current_node": "checkout_edit_and_review__node"
+}

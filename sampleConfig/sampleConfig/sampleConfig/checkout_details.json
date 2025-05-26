@@ -1,0 +1,455 @@
+{
+  "url": {
+    "base_path": "fresh-car/checkout-details",
+    "host_name": "",
+    "query_params": {
+      "ekey": "#proposal.ekey"
+    }
+  },
+  "actions": {
+    "on_load": [
+      {
+        "args": {
+          "data": {
+            "make": "Maruti",
+            "year": "2010",
+            "model": "Swift Dzire",
+            "reg_no": "MH 04 EQ 4392"
+          },
+          "eventName": "view_vehicle_prequote_page",
+          "eventType": "pageView"
+        },
+        "type": "useAnalytics"
+      }
+    ]
+  },
+  "children": [
+    {
+      "id": "user_info_node_header",
+      "data": {
+        "props": {
+          "label": "",
+          "imgSrc": "",
+          "is_visible": true,
+          "back_button": true
+        },
+        "column": null
+      },
+      "type": "header"
+    },
+    {
+      "id": "user_info_node_two_column_layout",
+      "data": {
+        "props": {
+          "is_visible": true
+        }
+      },
+      "type": "flex_container",
+      "children": [
+        {
+          "id": "user_info_node_left_nav",
+          "data": {
+            "props": {
+              "steps": [
+                {
+                  "name": "Car details",
+                  "status": "complete"
+                },
+                {
+                  "name": "Personal details",
+                  "status": "complete"
+                },
+                {
+                  "name": "Plan selection",
+                  "status": "complete"
+                },
+                {
+                  "name": "Verify and review",
+                  "status": "progress"
+                }
+              ],
+              "style": {
+                "background": "#EFE9FB"
+              },
+              "is_visible": true
+            },
+            "coloum": 1
+          },
+          "type": "left_navigation"
+        },
+        {
+          "id": "checkout_details_node_box_container",
+          "data": {
+            "props": {
+              "style": {},
+              "is_visible": true
+            },
+            "coloum": 2
+          },
+          "type": "layout",
+          "children": [
+            {
+              "id": "checkout_details_node_page_heading",
+              "data": {
+                "row": 1,
+                "props": {
+                  "text": "<span>Confirm</span> these important details",
+                  "styles": {},
+                  "is_visible": true
+                }
+              },
+              "type": "page_heading"
+            },
+            {
+              "id": "checkout_details_node_qna_1",
+              "data": {
+                "row": 2,
+                "props": {
+                  "styles": {
+                    "width": "50%"
+                  },
+                  "heading": "Has your policy expired?",
+                  "validate": {
+                    "regex": "",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": true,
+                  "show_error": false,
+                  "payloadData": {
+                    "name": "previous_policy_expired",
+                    "value": ""
+                  },
+                  "sub_heading": null
+                }
+              },
+              "type": "qna",
+              "children": [
+                {
+                  "id": "checkout_details_node_qna_1_select_button_1",
+                  "data": {
+                    "props": {
+                      "name": "previous_policy_expired",
+                      "label": "Yes",
+                      "value": "yes",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": []
+                  }
+                },
+                {
+                  "id": "checkout_details_node_qna_1_select_button_2",
+                  "data": {
+                    "props": {
+                      "name": "previous_policy_expired",
+                      "label": "No",
+                      "value": "no",
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": []
+                  }
+                }
+              ]
+            },
+            {
+              "id": "checkout_details_node_qna_2",
+              "data": {
+                "row": 3,
+                "props": {
+                  "styles": {
+                    "width": "50%"
+                  },
+                  "heading": "Do you know the expiry date of your current policy?",
+                  "validate": {
+                    "regex": "",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": true,
+                  "show_error": false,
+                  "payloadData": {
+                    "name": "policy_expiry_date",
+                    "value": ""
+                  },
+                  "sub_heading": null
+                }
+              },
+              "type": "qna",
+              "children": [
+                {
+                  "id": "checkout_details_node_qna_2_select_button_1",
+                  "data": {
+                    "props": {
+                      "name": "policy_expiry_date",
+                      "label": "Yes",
+                      "value": true,
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": []
+                  }
+                },
+                {
+                  "id": "checkout_details_node_qna_2_select_button_2",
+                  "data": {
+                    "props": {
+                      "name": "policy_expiry_date",
+                      "label": "No",
+                      "value": false,
+                      "styles": {
+                        "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                        "border_radius": "8px"
+                      },
+                      "is_visible": true
+                    }
+                  },
+                  "type": "select_button",
+                  "actions": {
+                    "on_click": []
+                  }
+                }
+              ]
+            },
+            {
+              "id": "checkout_details_node_page_heading",
+              "data": {
+                "row": 4,
+                "props": {
+                  "text": "No worries! We will start your new policy <span>tomorrow</span> for continued car protection.",
+                  "styles": {
+                    "font-size": "16px",
+                    "font-weight": "500",
+                    "line-height": "24px"
+                  },
+                  "is_visible": true
+                }
+              },
+              "type": "page_heading"
+            },
+            {
+              "id": "checkout_details_node_new_policy_date",
+              "data": {
+                "row": 5,
+                "props": {
+                  "name": "policy_start_date",
+                  "type": "date",
+                  "label": "New policy start date",
+                  "title": "New policy start date",
+                  "isDesktop": true,
+                  "is_visible": true,
+                  "subHeading": "You can update the start date on the ACKO app within 60 days. We’ll ensure you get a year-long coverage.",
+                  "payloadData": {
+                    "name": "policy_start_date",
+                    "value": ""
+                  }
+                }
+              },
+              "type": "calendar",
+              "actions": {
+                "on_change": [
+                  {}
+                ]
+              }
+            },
+            {
+              "id": "checkout_details_node_current_policy_date",
+              "data": {
+                "row": 6,
+                "props": {
+                  "name": "policy_start_date",
+                  "type": "date",
+                  "label": "Current policy expiry date",
+                  "title": "Current policy expiry date",
+                  "isDesktop": true,
+                  "is_visible": true,
+                  "payloadData": {
+                    "name": "policy_start_date",
+                    "value": ""
+                  }
+                }
+              },
+              "type": "calendar",
+              "actions": {
+                "on_change": [
+                  {}
+                ]
+              }
+            },
+            {
+              "id": "checkout_details_node_policy_start_date_nudge",
+              "data": {
+                "row": 7,
+                "props": {
+                  "styles": {},
+                  "cueText": "In order to ensure continuous coverage, your new policy must start right after your current one expires",
+                  "is_visible": true,
+                  "policyDateText": "Your new policy will start on"
+                }
+              },
+              "type": "policy_start_date_nudge"
+            },
+            {
+              "id": "checkout_details_node_section_divider",
+              "data": {
+                "row": 8,
+                "props": {
+                  "styles": {
+                    "border-top": "1px dotted #efe9fb"
+                  },
+                  "is_visible": true
+                }
+              },
+              "type": "section_divider"
+            },
+            {
+              "id": "checkout_details_node_phone_number",
+              "data": {
+                "row": 9,
+                "props": {
+                  "name": "phone",
+                  "type": "tel",
+                  "styles": {},
+                  "cueText": "We will only use this to send policy updates",
+                  "heading": "Your phone number",
+                  "validate": {
+                    "regex": "^[6-9]\\d{9}$",
+                    "inValidErrorMessage": "Enter a valid Phone number",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": true,
+                  "payloadData": {
+                    "name": "phone",
+                    "value": "#proposal.user.phone"
+                  },
+                  "placeholder": "Phone number",
+                  "defaultValue": "",
+                  "phone_number": ""
+                }
+              },
+              "type": "inputfield",
+              "actions": {
+                "on_change": [
+                  {}
+                ]
+              }
+            },
+            {
+              "id": "checkout_details_node_email_id",
+              "data": {
+                "row": 10,
+                "props": {
+                  "name": "email_id",
+                  "type": "email",
+                  "styles": {},
+                  "cueText": "",
+                  "heading": "Your Email",
+                  "validate": {
+                    "regex": "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$",
+                    "inValidErrorMessage": "Enter a valid email address",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": true,
+                  "payloadData": {
+                    "name": "email_id",
+                    "value": "#proposal.user.email"
+                  },
+                  "placeholder": "Email",
+                  "defaultValue": ""
+                }
+              },
+              "type": "inputfield",
+              "actions": {
+                "on_change": [
+                  {}
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "page_footer",
+      "data": {
+        "props": {
+          "label": "",
+          "style": {
+            "padding": "20px",
+            "maxWidth": "360px"
+          },
+          "cueText": "",
+          "is_visible": true
+        },
+        "column": null
+      },
+      "type": "footer",
+      "children": [
+        {
+          "id": "footer_cta",
+          "data": {
+            "props": {
+              "label": "Confirm",
+              "styles": {
+                "width": "200px"
+              },
+              "is_visible": true,
+              "mobileNumberVerified": "#proposal.context.mobile_verified",
+              "proposalMobileNumber": "#proposal.user.phone"
+            }
+          },
+          "type": "hcaptcha_primary_button",
+          "actions": {
+            "on_click": [
+              {
+                "args": {
+                  "journey": "fresh_car",
+                  "expected_node": "",
+                  "required_fields": [
+                    "checkout_details_node_qna_1",
+                    "checkout_details_node_qna_2",
+                    "checkout_details_node_phone_number",
+                    "checkout_details_node_email_id"
+                  ]
+                },
+                "type": "validateDataAndFields"
+              }
+            ],
+            "on_send_otp": [
+              {
+                "args": {
+                  "journey": "fresh_car",
+                  "expected_node": ""
+                },
+                "type": "submit_call"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "meta_data": {
+    "link": "",
+    "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+    "description": ""
+  },
+  "current_node": "checkout_details_node"
+}

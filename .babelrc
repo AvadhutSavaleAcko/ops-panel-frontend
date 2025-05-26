@@ -1,0 +1,35 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "@components": "./components",
+          "@parser": "./parser",
+          "@pages": "./pages",
+          "@public": "./public",
+          "@styles": "./styles",
+          "@store": "./store",
+          "@utils": "./utils",
+          "@widgets": "./widgets",
+          "@actions": "./actions",
+          "@service": "./service"
+        }
+      }
+    ]
+  ],
+  "env": {
+    "development": {
+      "plugins": [["styled-components", { "ssr": true }]]
+    },
+    "production": {
+      "plugins": [["styled-components", { "ssr": true }]]
+    },
+    "test": {
+      "presets": [["next/babel", { "preset-env": { "modules": "commonjs" } }]],
+      "plugins": [["styled-components", { "ssr": true }]]
+    }
+  }
+}

@@ -1,0 +1,291 @@
+{
+  "url": {
+    "base_path": "",
+    "host_name": "",
+    "query_params": {
+      "ekey": "#proposal.ekey"
+    }
+  },
+  "actions": {
+    "on_load": [
+      {
+        "args": {
+          "data": {
+            "is_new": "false",
+            "origin": "acko",
+            "product": "car"
+          },
+          "journey": "fresh_car"
+        },
+        "type": "on_load"
+      }
+    ]
+  },
+  "children": [
+    {
+      "id": "user_info_node_header",
+      "data": {
+        "props": {
+          "label": "",
+          "imgSrc": "",
+          "is_visible": true,
+          "back_button": true
+        },
+        "column": null
+      },
+      "type": "header"
+    },
+    {
+      "id": "user_info_node_two_column_layout",
+      "data": {
+        "props": {
+          "is_visible": true
+        }
+      },
+      "type": "flex_container",
+      "children": [
+        {
+          "id": "user_info_node_left_nav",
+          "data": {
+            "props": {
+              "steps": [
+                {
+                  "name": "Car details",
+                  "status": "complete"
+                },
+                {
+                  "name": "Personal details",
+                  "status": "progress"
+                },
+                {
+                  "name": "Select plan",
+                  "status": "pending"
+                },
+                {
+                  "name": "Discounts",
+                  "status": "pending"
+                },
+                {
+                  "name": "Insured value",
+                  "status": "pending"
+                },
+                {
+                  "name": "Additional covers",
+                  "status": "pending"
+                },
+                {
+                  "name": "Verify and review",
+                  "status": "pending"
+                }
+              ],
+              "style": {
+                "background": "#EFE9FB"
+              },
+              "is_visible": true
+            },
+            "coloum": 1
+          },
+          "type": "left_navigation"
+        },
+        {
+          "id": "user_info_node_box_container",
+          "data": {
+            "props": {
+              "style": {},
+              "is_visible": true
+            },
+            "coloum": 2
+          },
+          "type": "layout",
+          "children": [
+            {
+              "id": "user_info_node_page_heading",
+              "data": {
+                "row": 1,
+                "props": {
+                  "text": "Looks like you haven’t visited us before. Tell us a bit <span>about yourself</span>",
+                  "styles": {},
+                  "is_visible": true
+                }
+              },
+              "type": "page_heading"
+            },
+            {
+              "id": "user_info_node_name",
+              "data": {
+                "row": 2,
+                "props": {
+                  "name": "full_name",
+                  "type": "text",
+                  "styles": {},
+                  "cueText": "Enter your name, even if you’re buying this policy for someone else",
+                  "validate": {
+                    "regex": "^[a-zA-Z ]{2,60}$",
+                    "inValidErrorMessage": "Enter a valid name",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": true,
+                  "owner_name": "",
+                  "payloadData": {
+                    "name": "full_name",
+                    "value": "#proposal.user.name"
+                  },
+                  "placeholder": "Enter your name",
+                  "defaultValue": ""
+                }
+              },
+              "type": "inputfield",
+              "actions": {
+                "on_change": [
+                  {}
+                ]
+              }
+            },
+            {
+              "id": "user_info_node_phone_number",
+              "data": {
+                "row": 3,
+                "props": {
+                  "name": "phone",
+                  "type": "tel",
+                  "styles": {},
+                  "cueText": "Strictly no spam, only for quote and policy updates",
+                  "validate": {
+                    "regex": "^[6-9]\\d{9}$",
+                    "inValidErrorMessage": "Enter a valid Phone number",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": true,
+                  "payloadData": {
+                    "name": "phone",
+                    "value": "#proposal.user.phone"
+                  },
+                  "placeholder": "Phone number",
+                  "defaultValue": "",
+                  "phone_number": ""
+                }
+              },
+              "type": "inputfield",
+              "actions": {
+                "on_change": [
+                  {}
+                ]
+              }
+            },
+            {
+              "id": "user_info_node_pincode",
+              "data": {
+                "row": 4,
+                "props": {
+                  "name": "pincode",
+                  "type": "text",
+                  "styles": {},
+                  "cueText": "Enter the pin code of the place where you currently live",
+                  "pincode": "",
+                  "validate": {
+                    "regex": "^[1-9][0-9]{5}$",
+                    "inValidErrorMessage": "Enter a valid Pincode",
+                    "requiredErrorMessage": "This is a mandatory field"
+                  },
+                  "is_visible": true,
+                  "payloadData": {
+                    "name": "pincode",
+                    "value": "#proposal.user.pincode"
+                  },
+                  "placeholder": "Pincode",
+                  "defaultValue": ""
+                }
+              },
+              "type": "inputfield",
+              "actions": {
+                "on_change": [
+                  {}
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "page_footer",
+      "data": {
+        "props": {
+          "label": "",
+          "style": {
+            "padding": "20px",
+            "maxWidth": "360px"
+          },
+          "cueText": "",
+          "is_visible": true
+        },
+        "column": null
+      },
+      "type": "footer",
+      "children": [
+        {
+          "id": "footer_cta",
+          "data": {
+            "props": {
+              "name": "",
+              "label": "View plans",
+              "styles": {
+                "background": "border: 1px solid var(__line_primary_n_200, #E7E7F0);",
+                "border_radius": "8px"
+              },
+              "is_visible": true
+            }
+          },
+          "type": "primary_button",
+          "actions": {
+            "on_click": [
+              {
+                
+              }
+              ]
+          },
+          "children": [
+            {
+              "id": "ncb-bottomsheet",
+              "data": {
+                "props": {
+                  "options": "#ncbSlab.ncbArray",
+                  "is_visible": false,
+                  "showChangeModal": false
+                }
+              },
+              "type": "ncb_bottomsheet",
+              "actions": {
+                "on_click": [
+                  {
+                    "args": {
+                      "requestBody": {
+                        "current_node": "user_info_node",
+                        "expected_node": ""
+                      }
+                    },
+                    "type": "fetch_config_redirect"
+                  }
+                ],
+                "on_close": [
+                  {
+                    "args": {
+                      "reverseIds": "ncb-bottomsheet"
+                    },
+                    "type": "submit_call"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "meta_data": {
+    "link": "",
+    "page_title": "Quick Car & Two Wheeler Insurance Policy Online _ ACKO General Insurance Company",
+    "description": ""
+  },
+  "current_node": "user_info_node"
+}
